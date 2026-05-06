@@ -16,24 +16,6 @@ bat pos [2] Bottom right coordinate x2
 bat pos [3] Bottom right coordinate y2"""
 
 
-#class for making instruction menu in front
-class instruction_base:
-    def __init__(self, root, instructions):
-        self.root = root
-        self.start_frame = Frame(root, bg="white", width=300, height=400)
-        self.start_frame.pack(padx=20, pady=20)
-        self.start_frame.lift()
-        self.inst_desc = Label(self.start_frame, text=instructions, fg="black", width=15, height=20)
-        self.inst_desc.pack(pady=20)
-        self.start_btn = Button(self.start_frame, text="Start Game", command=self.start_game, bg="lightgray", fg="black", padx=5, pady=5, width=10)
-        self.start_btn.pack()
-        self.quit_btn = Button(self.start_frame, text="Exit Game", command=root.destroy, bg="lightgray")
-        self.quit_btn.pack()
-
-    def start_game(self):
-        self.start_frame.destroy()
-
-
 class Ball:
     def __init__(self, canvas, color, radius):
         self.canvas = canvas
@@ -170,7 +152,6 @@ def block_break(root):
     for x, y in bricks_pos:
         bricks.append(Brick(canvas, x, y, 80, 20, "white"))
 
-    instruction_menu = instruction_base(root, "In this game, you have to use the paddle on the bottom of the screen to bounce the ball so it hits the blocks above. Hit all blocks to win!\nYou only have one life per round.\nUse the left and right arrow keys to control your paddle.")
     while True:
         #lose condition
         if ball.hit_bottom:
