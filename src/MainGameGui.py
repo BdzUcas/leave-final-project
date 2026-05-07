@@ -10,11 +10,30 @@ root.minsize(2600,1400)
 root.maxsize(2600,1400)
 
 #Images
+
 itemframe = Image.open("Images/ItemFrame.png.png")
 itemframe = ImageTk.PhotoImage(itemframe)
 
 Selitemframe = Image.open("Images/SlectedItemFrame.png.png")
 Selitemframe = ImageTk.PhotoImage(Selitemframe)
+
+elevatorhall = Image.open("Images/ElevatorHall.png.png")
+elevatorhall = ImageTk.PhotoImage(elevatorhall)
+
+main10 = Image.open("Images/Mainfloor10.png.png")
+main10 = ImageTk.PhotoImage(main10)
+
+garden = Image.open("Images/Floating_Garden.png.png")
+garden = ImageTk.PhotoImage(garden)
+
+oj = Image.open("Images/OJ Carton.png.png")
+oj = ImageTk.PhotoImage(oj)
+
+
+"""
+
+
+
 
 Testimage1 = Image.open("Images/Test1background.png.png")
 Testimage1 = ImageTk.PhotoImage(Testimage1)
@@ -24,6 +43,8 @@ Testimage2 = ImageTk.PhotoImage(Testimage2)
 
 Testitem1 = Image.open("Images/Test_Item.png.png")
 Testitem1 = ImageTk.PhotoImage(Testitem1)
+"""
+
 #button.pack(pady=20)
 root.passed_Sleceted_item = "Empty"
 root.Temporary_Items = []
@@ -77,11 +98,11 @@ def item(ItemName):
 
 def SceneButtons(SceneData):
     if SceneData == 1:
-        root.FrsButton = tk.Button(root, image=itemframe, command=lambda:scene(Testimage2,2))
+        root.FrsButton = tk.Button(root, image=itemframe, command=lambda:scene(main10,2))
         root.FrsButton.place(relx=.02, rely=0.5,anchor="n")
     if SceneData == 2:
         root.FrsButton.place_forget()
-        root.FrsButton = tk.Button(root, image=itemframe, command=lambda:scene(Testimage1,1))
+        root.FrsButton = tk.Button(root, image=itemframe, command=lambda:scene(elevatorhall,1))
         root.FrsButton.place(relx=.8, rely=0.5,anchor="n")
         #root.frsButton.place(relx=.02, rely=0.5,anchor="n")
 def SceneItems(SceneData):
@@ -99,5 +120,5 @@ def scene(background,SceneData):
 
 
 #Test scene Data
-scene(Testimage1,1)
+scene(elevatorhall,1)
 root.mainloop()
