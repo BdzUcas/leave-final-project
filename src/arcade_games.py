@@ -187,8 +187,6 @@ def block_break(root):
         sleep(0.003)
     root.mainloop()
 
-block_break(tk)
-
 
 #matching cards
 class Card:
