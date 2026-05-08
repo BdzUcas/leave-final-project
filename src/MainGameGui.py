@@ -1,6 +1,7 @@
 import tkinter as tk
 from PIL import Image, ImageTk
 import time
+from treat_trios import treat_trios
 root = tk.Tk()
 root.title("IDK MAN")
 
@@ -77,6 +78,8 @@ dialouginteraction = ImageTk.PhotoImage(dialouginteraction)
 stairs = Image.open("Images/Stairs.png.png")
 stairs = ImageTk.PhotoImage(stairs)
 
+candy_arcade = Image.open("Images/Candy arcade.png.png")
+candy_arcade = ImageTk.PhotoImage(candy_arcade)
 """
 
 
@@ -94,7 +97,7 @@ oj = ImageTk.PhotoImage(oj)
 root.backgroundlabel = tk.Label(root,)
 root.backgroundlabel.place(relx=.5, rely=0.0, anchor="n")
 
-#button.pack(pady=20)
+#button.pack(pady=40)
 root.passed_Sleceted_item = "Empty"
 root.Temporary_Items = []
 
@@ -110,6 +113,8 @@ root.stairsavailible = False
 #itemframe_btn.place(relx=.5, rely=0.90, anchor="n")
 def dialog(Interaction_Num,persontalking,currentscene):
     scene(dialoguebox,0)
+    root.nametag = tk.Label(root, text=persontalking, font=("Arial", 70), bg="tan")
+    root.nametag.place(relx=.5, rely=0.3, anchor="n")
     try:
         root.Dialogue.place_forget()
     except:
@@ -132,7 +137,7 @@ def dialog(Interaction_Num,persontalking,currentscene):
         pass
     if Interaction_Num == 1:
         #Introduction to the candy store owner
-        root.Dialogue = tk.Label(root, text="Welcome!", font=("Arial", 20))
+        root.Dialogue = tk.Label(root, text="Welcome!", font=("Arial", 40), bg="tan")
         root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
         root.nextbutton = tk.Button(root, text="Goodbye", command=lambda: dialog(0,persontalking,currentscene))
         root.nextbutton.place(relx=.5, rely=0.75, anchor="n")
@@ -143,24 +148,24 @@ def dialog(Interaction_Num,persontalking,currentscene):
         root.button3 = tk.Button(root, text="What are your thoughts on cats?", command=lambda: dialog(4,persontalking,currentscene))
         root.button3.place(relx=.3, rely=0.65, anchor="n")
     if Interaction_Num == 2:
-        root.Dialogue = tk.Label(root, text="Candy Staff: “Oh! Well, this store spans floor 9 and 10…so I can let you use our back stairs…but where are your parents? And why can’t you go down?”", font=("Arial", 20))
+        root.Dialogue = tk.Label(root, text=f"“Oh! Well, this store spans floor 9 and 10\nso I can let you use our back stairs\nbut where are your parents? And why can’t you go down?”", font=("Arial", 40), bg="tan")
         root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
         root.button1 = tk.Button(root, text="None of your business.", command=lambda: dialog(0,persontalking,currentscene))
         root.button1.place(relx=.6, rely=0.65, anchor="n")
         root.button2 = tk.Button(root, text="Don’t worry, I just need to get something for my parents. The elevator is broken by the way.", command=lambda: dialog(5,persontalking,currentscene))
         root.button2.place(relx=.4, rely=0.65, anchor="n")
     if Interaction_Num == 3:
-        root.Dialogue = tk.Label(root, text="“Well, the owner of this store of course!”", font=("Arial", 20))
+        root.Dialogue = tk.Label(root, text="“Well, the owner of this store of course!”", font=("Arial", 40), bg="tan")
         root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
         root.nextbutton = tk.Button(root, text="Goodbye", command=lambda: dialog(0,persontalking,currentscene))
         root.nextbutton.place(relx=.5, rely=0.75, anchor="n")
     if Interaction_Num == 4:
-        root.Dialogue = tk.Label(root, text="“Eh, they’re fine.”", font=("Arial", 20))
+        root.Dialogue = tk.Label(root, text="“Eh, they’re fine.”", font=("Arial", 40), bg="tan")
         root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
         root.nextbutton = tk.Button(root, text="Goodbye", command=lambda: dialog(0,persontalking,currentscene))
         root.nextbutton.place(relx=.5, rely=0.75, anchor="n")
     if Interaction_Num == 5:
-        root.Dialogue = tk.Label(root, text="If you say so. Now…I did lose the key…so if you have something we can lockpick with, then let’s use it.", font=("Arial", 20))
+        root.Dialogue = tk.Label(root, text=f"If you say so. Now…I did lose the key…\nso if you have something we can lockpick with, then let’s use it.", font=("Arial", 40), bg="tan")
         root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
         for x in root.Temporary_Items:
             if x[0] == "Bobbypin":
@@ -169,7 +174,7 @@ def dialog(Interaction_Num,persontalking,currentscene):
         root.button2 = tk.Button(root, text="Let me go look for something", command=lambda: dialog(0,persontalking,currentscene))
         root.button2.place(relx=.5, rely=0.65, anchor="n")
     if Interaction_Num == 6:
-        root.Dialogue = tk.Label(root, text="“The stairs are now availible”", font=("Arial", 20))
+        root.Dialogue = tk.Label(root, text="“The stairs are now availible”", font=("Arial", 40), bg="tan")
         root.nextbutton = tk.Button(root, text="Goodbye", command=lambda: dialog(0,persontalking,currentscene))
         root.nextbutton.place(relx=.5, rely=0.75, anchor="n")
         root.stairsavailible = True
@@ -215,7 +220,12 @@ def item(ItemName):
         root.Temporary_Items.append(["Bobbypin",bobbypin])
         Inventoryframes(root.Temporary_Items)
     if ItemName == "candystoredialogue":
-        dialog(1,"CandyStoreOwner",[candystore,5])
+        dialog(1,"CandyStore Owner",[candystore,5])
+    if ItemName == "candy_arcade":
+        for x in root.Temporary_Items:
+            if x[0] == "Bobbypin":
+                treat_trios()
+                
 
 def SceneButtons(SceneData):
     try:
@@ -290,9 +300,16 @@ def SceneItems(SceneData):
             root.item.place(relx=.5, rely=0.1,anchor="n")
     if SceneData == 5:
         root.item = tk.Button(root, image=dialouginteraction, command=lambda: item("candystoredialogue"))
-        root.item.place(relx=.5, rely=0.1,anchor="n")
+        root.item.place(relx=.25, rely=0.1,anchor="n")
+        root.candyarcade = tk.Button(root, image=candy_arcade, command=lambda: item("candy_arcade"))
+        root.candyarcade.place(relx=.75, rely=0.2,anchor="n")
+    
         
 def scene(background,SceneData):
+    try:
+        root.nametag.place_forget()
+    except:
+        pass
     root.backgroundlabel.configure(image=background)
     SceneButtons(SceneData)
     SceneItems(SceneData)
