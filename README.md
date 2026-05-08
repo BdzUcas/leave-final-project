@@ -15,6 +15,6 @@ Leave is a point-and-click adventure game. The protagonist, Dave, is trying to l
 
 ## Contribution Guidelines
 
-If you would like to work on the game, email me at briggs.hardy@ucas-edu.net
+If you would like to work on the game, email briggs.hardy@ucas-edu.net
 
 #### © 2026 Utah County Academy of Sciences
