@@ -31,5 +31,7 @@ You need to install the external libraries Pillow and PyGame for this. After tha
 - Utah County Academy of Sciences
 
 ## Contribution Guidelines
-If you would like to work on the game, email me at briggs.hardy@ucas-edu.net
-You can make the visuals better, add more endings, and add extra content to the game.
+
+If you would like to work on the game, email briggs.hardy@ucas-edu.net
+
+### © 2026 Utah County Academy of Sciences
