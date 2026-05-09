@@ -80,6 +80,19 @@ stairs = ImageTk.PhotoImage(stairs)
 
 candy_arcade = Image.open("Images/Candy arcade.png.png")
 candy_arcade = ImageTk.PhotoImage(candy_arcade)
+
+toycarsimage = Image.open("Images/Box o cars.png.png")
+toycarsimage = ImageTk.PhotoImage(toycarsimage)
+
+candyticket = Image.open("Images/Candy ticket.png.png")
+candyticket = ImageTk.PhotoImage(candyticket)
+
+candypin = Image.open("Images/Kandy_Pin.png.png")
+candypin = ImageTk.PhotoImage(candypin)
+
+brokenpin = Image.open("Images/BrokenBobbyPin.png.png")
+brokenpin = ImageTk.PhotoImage(brokenpin)
+
 """
 
 
@@ -97,6 +110,10 @@ oj = ImageTk.PhotoImage(oj)
 root.backgroundlabel = tk.Label(root,)
 root.backgroundlabel.place(relx=.5, rely=0.0, anchor="n")
 
+root.currency = 5
+root.currecytag = tk.Label(root, text=f"Current cash:{root.currency}", font=("Arial", 20), bg="tan")
+root.currecytag.place(relx=.15, rely=0.73, anchor="n")
+
 #button.pack(pady=40)
 root.passed_Sleceted_item = "Empty"
 root.Temporary_Items = []
@@ -106,11 +123,38 @@ root.Temporary_Items = []
 root.Item_Selected = "None"
 root.testItemBool = 0
 root.boobypinbool = False
+root.dollars2bool = False
 root.stairsavailible = False
+
 
 #The main part
 #itemframe_btn = tk.Button(root, image=itemframe)
 #itemframe_btn.place(relx=.5, rely=0.90, anchor="n")
+def kill():
+    try:
+        root.nametag.place_forget()
+    except:
+        pass
+    try:
+        root.Dialogue.place_forget()
+    except:
+        pass
+    try:
+       root.nextbutton.place_forget()
+    except:
+        pass
+    try:
+       root.button1.place_forget()
+    except:
+        pass
+    try:
+       root.button2.place_forget()
+    except:
+        pass
+    try:
+       root.button3.place_forget()
+    except:
+        pass
 def dialog(Interaction_Num,persontalking,currentscene):
     scene(dialoguebox,0)
     root.nametag = tk.Label(root, text=persontalking, font=("Arial", 70), bg="tan")
@@ -174,10 +218,111 @@ def dialog(Interaction_Num,persontalking,currentscene):
         root.button2 = tk.Button(root, text="Let me go look for something", command=lambda: dialog(0,persontalking,currentscene))
         root.button2.place(relx=.5, rely=0.65, anchor="n")
     if Interaction_Num == 6:
-        root.Dialogue = tk.Label(root, text="“The stairs are now availible”", font=("Arial", 40), bg="tan")
+        tempbool = False
+        for x in root.Temporary_Items:
+            if x[0] == "Bobbypin":
+                tempbool = True
+                itemframe_Deletion("Bobbypin",root.Testitem)
+                root.Temporary_Items.append(["Brokenbooby",brokenpin])
+                Inventoryframes(root.Temporary_Items)
+        if tempbool == True:        
+            root.Dialogue = tk.Label(root, text="It seems I broke the bobby pin\n If only you could get me a diffrent one it would work", font=("Arial", 40), bg="tan")
+            root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
+            root.nextbutton = tk.Button(root, text="Goodbye", command=lambda: dialog(0,persontalking,currentscene))
+            root.nextbutton.place(relx=.5, rely=0.75, anchor="n")
+            #root.stairsavailible = True
+    if Interaction_Num == 7:
+        root.Dialogue = tk.Label(root, text="Hey!", font=("Arial", 40), bg="tan")
+        root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
         root.nextbutton = tk.Button(root, text="Goodbye", command=lambda: dialog(0,persontalking,currentscene))
         root.nextbutton.place(relx=.5, rely=0.75, anchor="n")
-        root.stairsavailible = True
+        root.button1 = tk.Button(root, text="Are you looking for something", command=lambda: dialog(9,persontalking,currentscene))
+        root.button1.place(relx=.5, rely=0.65, anchor="n")
+        root.button2 = tk.Button(root, text="What is your name", command=lambda: dialog(8,persontalking,currentscene))
+        root.button2.place(relx=.4, rely=0.65, anchor="n")
+    if Interaction_Num == 8:
+        persontalking = "James"
+        root.Dialogue = tk.Label(root, text="James whats yours", font=("Arial", 40), bg="tan")
+        root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
+        root.button1 = tk.Button(root, text="Dave", command=lambda: dialog(7,persontalking,currentscene))
+        root.button1.place(relx=.5, rely=0.65, anchor="n")
+    if Interaction_Num == 9:
+        tempbool = False
+        root.Dialogue = tk.Label(root, text="“I lost my cars…”", font=("Arial", 40), bg="tan")
+        root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
+        for x in root.Temporary_Items:
+            if x[0] == "Toycars":
+                tempbool = True
+        if tempbool == False:
+            root.nextbutton = tk.Button(root, text="Can’t you just get new ones?", command=lambda: dialog(10,persontalking,currentscene))
+            root.nextbutton.place(relx=.5, rely=0.65, anchor="n")
+        else:
+            root.button1 = tk.Button(root, text="I have a toy car set. Want it?", command=lambda: dialog(16,persontalking,currentscene))
+            root.button1.place(relx=.5, rely=0.65, anchor="n")
+            root.nextbutton = tk.Button(root, text="Can’t you just get new ones?", command=lambda: dialog(10,persontalking,currentscene))
+            root.nextbutton.place(relx=.6, rely=0.65, anchor="n")
+    if Interaction_Num == 10:
+        root.Dialogue = tk.Label(root, text="“Dad won’t let me get any!!”", font=("Arial", 40), bg="tan")
+        root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
+        root.nextbutton = tk.Button(root, text="Oh. That kinda sucks.", command=lambda: dialog(11,persontalking,currentscene))
+        root.nextbutton.place(relx=.5, rely=0.65, anchor="n")
+    if Interaction_Num == 11:
+        root.Dialogue = tk.Label(root, text="“Say, if you find any, can you give them to me?”", font=("Arial", 40), bg="tan")
+        root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
+        root.nextbutton = tk.Button(root, text="What do I get in return?", command=lambda: dialog(12,persontalking,currentscene))
+        root.nextbutton.place(relx=.5, rely=0.65, anchor="n")
+    if Interaction_Num == 12:
+        root.Dialogue = tk.Label(root, text="““Hm…I’ll give you this.\n h”“A ‘Candy Smash’ ticket…?”", font=("Arial", 40), bg="tan")
+        root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
+        root.nextbutton = tk.Button(root, text=" Like…for the arcade on floor 5?", command=lambda: dialog(13,persontalking,currentscene))
+        root.nextbutton.place(relx=.5, rely=0.65, anchor="n")
+    if Interaction_Num == 13:
+        root.Dialogue = tk.Label(root, text="Nah. It’s for that video game in the candy store.", font=("Arial", 40), bg="tan")
+        root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
+        root.nextbutton = tk.Button(root, text="Oh. Great. Fine…I’ll take it…", command=lambda: dialog(7,persontalking,currentscene))
+        root.nextbutton.place(relx=.5, rely=0.65, anchor="n")
+    if Interaction_Num == 14:
+        root.Dialogue = tk.Label(root, text="Hello, are you ready to make a purchase?\n we have toy cars for sale for only 7$", font=("Arial", 40), bg="tan")
+        root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
+        root.nextbutton = tk.Button(root, text="Goodbye", command=lambda: dialog(0,persontalking,currentscene))
+        root.nextbutton.place(relx=.5, rely=0.75, anchor="n")
+        if root.currency >= 7:
+            root.button1 = tk.Button(root, text="Oh. Great. Fine…I’ll take it…", command=lambda: dialog(15,persontalking,currentscene))
+            root.button1.place(relx=.5, rely=0.65, anchor="n")
+    if Interaction_Num == 15:
+        root.currency -= 7
+        root.currecytag.configure(text=f"Current cash:{root.currency}")
+        root.Temporary_Items.append(["Toycars",toycarsimage])
+        Inventoryframes(root.Temporary_Items)
+        dialog(0,persontalking,currentscene)
+    if Interaction_Num == 16:
+        
+        root.Dialogue = tk.Label(root, text="Oh oh! You really got one for mee??", font=("Arial", 40), bg="tan")
+        root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
+
+        root.button1 = tk.Button(root, text="Take it before I take it for myself.", command=lambda: dialog(17,persontalking,currentscene))
+        root.button1.place(relx=.5, rely=0.65, anchor="n")
+
+    if Interaction_Num == 17:
+        kill()
+        kill()
+        kill()
+        kill()
+        kill()
+        kill()
+        kill()
+        kill()
+        dialog(18,persontalking,currentscene)
+    if Interaction_Num == 18:
+        root.Dialogue = tk.Label(root, text="Oh take this for getting me the cars\n (He hands you a ticket to the arcade machine in the candy store) ", font=("Arial", 40), bg="tan")
+        root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
+        root.nextbutton = tk.Button(root, text="Uh, byeee…", command=lambda: dialog(19,persontalking,currentscene))
+        root.nextbutton.place(relx=.5, rely=0.65, anchor="n")
+    if Interaction_Num == 19:
+        itemframe_Deletion("Toycars",root.Toycars)
+        root.Temporary_Items.append(["CandyTicket",candyticket])
+        Inventoryframes(root.Temporary_Items)
+        dialog(0,persontalking,currentscene)
     if Interaction_Num == 0:
         scene(currentscene[0],currentscene[1])
 def itemframe_Deletion(Item_type,Item_Name):
@@ -211,21 +356,56 @@ def Inventoryframes(Inventory):
         root.InventoryCount += 0.1
         if x[0] == "Bobbypin":
             root.Testitem = tk.Button(root,image=x[1],command=lambda:item_selection(x[0],root.Testitem))
-            root.Testitem.place(relx=root.InventoryCount, rely=0.75,anchor="n")
+            root.Testitem.place(relx=root.InventoryCount, rely=0.8,anchor="n")
+        if x[0] == "Brokenbooby":
+            root.Testitem = tk.Button(root,image=x[1],command=lambda:item_selection(x[0],root.Testitem))
+            root.Testitem.place(relx=root.InventoryCount, rely=0.8,anchor="n")
+        if x[0] == "Toycars":
+            root.Toycars = tk.Button(root,image=x[1],command=lambda:item_selection(x[0],root.Testitem))
+            root.Toycars.place(relx=root.InventoryCount, rely=0.8,anchor="n")
+        if x[0] == "CandyTicket":
+            root.CandyTicket = tk.Button(root,image=x[1],command=lambda:item_selection(x[0],root.Testitem))
+            root.CandyTicket.place(relx=root.InventoryCount, rely=0.8,anchor="n")
+        if x[0] == "CandyPin":
+            root.CandyPin = tk.Button(root,image=x[1],command=lambda:item_selection(x[0],root.Testitem))
+            root.CandyPin.place(relx=root.InventoryCount, rely=0.8,anchor="n")
 def item(ItemName):
     if ItemName == "Bobbypin":
-        root.boobypinbool = False
+        root.boobypinbool = True
         root.item.place_forget()
         #Hey I Do Not know what we are really doing for the item logic so just replace this with the function for item storage
         root.Temporary_Items.append(["Bobbypin",bobbypin])
         Inventoryframes(root.Temporary_Items)
+    if ItemName == "2dollars":
+        root.dollars2bool = True
+        root.item.place_forget()
+        #Hey I Do Not know what we are really doing for the item logic so just replace this with the function for item storage
+        root.currency += 2
+        root.currecytag.configure(text=f"Current cash:{root.currency}")
+        Inventoryframes(root.Temporary_Items)
     if ItemName == "candystoredialogue":
         dialog(1,"CandyStore Owner",[candystore,5])
+    if ItemName == "toystoredialogue":
+        dialog(14,"toy store worker",[toystore,7])
     if ItemName == "candy_arcade":
         for x in root.Temporary_Items:
-            if x[0] == "Bobbypin":
-                treat_trios()
-                
+            if x[0] == "CandyTicket":
+                root.item.place_forget()
+                try:
+                    treat_trios()
+
+                    root.item = tk.Button(root, image=candy_arcade, command=lambda: item("candy_arcade"))
+                    root.item.place(relx=.75, rely=0.2,anchor="n")
+                    root.Temporary_Items.append(["CandyPin",candypin])
+                except:
+                    itemframe_Deletion("CandyTicket",root.CandyTicket)
+                    root.item = tk.Button(root, image=candy_arcade, command=lambda: item("candy_arcade"))
+                    root.item.place(relx=.75, rely=0.2,anchor="n")
+                    root.Temporary_Items.append(["CandyPin",candypin])
+                Inventoryframes(root.Temporary_Items)
+    if ItemName == "Kid1Dialogue":
+        dialog(7,"Kid 1",[kidsection,4])
+
 
 def SceneButtons(SceneData):
     try:
@@ -275,6 +455,8 @@ def SceneButtons(SceneData):
 
         root.fourthbutton = tk.Button(root, image=uparrow, command=lambda:scene(toystore,7))
         root.fourthbutton.place(relx=.8, rely=0.45,anchor="n")
+
+
     if SceneData == 5:
         root.FrsButton = tk.Button(root, image=downarrow, command=lambda:scene(main10,2))
         root.FrsButton.place(relx=.5, rely=0.65,anchor="n")
@@ -294,22 +476,35 @@ def SceneItems(SceneData):
         root.item.place_forget()
     except:
         pass
+    try:
+        root.Dailog.place_forget()
+    except:
+        pass
+    
     if SceneData == 1:
         if root.boobypinbool == False:
             root.item = tk.Button(root, image=bobbypin, command=lambda: item("Bobbypin"))
             root.item.place(relx=.5, rely=0.1,anchor="n")
+    if SceneData == 3:
+        if root.dollars2bool == False:
+            root.item = tk.Button(root, image=dolla2, command=lambda: item("2dollars"))
+            root.item.place(relx=.8, rely=0.55,anchor="n")
     if SceneData == 5:
-        root.item = tk.Button(root, image=dialouginteraction, command=lambda: item("candystoredialogue"))
-        root.item.place(relx=.25, rely=0.1,anchor="n")
-        root.candyarcade = tk.Button(root, image=candy_arcade, command=lambda: item("candy_arcade"))
-        root.candyarcade.place(relx=.75, rely=0.2,anchor="n")
+        root.Dailog = tk.Button(root, image=dialouginteraction, command=lambda: item("candystoredialogue"))
+        root.Dailog.place(relx=.25, rely=0.1,anchor="n")
+        root.item = tk.Button(root, image=candy_arcade, command=lambda: item("candy_arcade"))
+        root.item.place(relx=.75, rely=0.2,anchor="n")
+    if SceneData == 4:
+        root.Dailog = tk.Button(root, image=dialouginteraction, command=lambda: item("Kid1Dialogue"))
+        root.Dailog.place(relx=.25, rely=0.1,anchor="n")
+    if SceneData == 7:
+        root.Dailog = tk.Button(root, image=dialouginteraction, command=lambda: item("toystoredialogue"))
+        root.Dailog.place(relx=.25, rely=0.1,anchor="n")
     
         
 def scene(background,SceneData):
-    try:
-        root.nametag.place_forget()
-    except:
-        pass
+    
+    kill()
     root.backgroundlabel.configure(image=background)
     SceneButtons(SceneData)
     SceneItems(SceneData)
