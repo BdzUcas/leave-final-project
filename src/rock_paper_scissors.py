@@ -14,27 +14,31 @@ def image_button(root: tk.Tk, return_val: str, image: tk.PhotoImage, result: Res
 
 def choice_gui():
     choice_gui = tk.Tk()
-    choice_gui.geometry("1000x800")
-    choice_gui.resizable(True,True)
+    choice_gui.geometry("1200x1100")
+    choice_gui.resizable(False,False)
     choice_gui.title('Rock Paper Scissors')
+    arcade_game_image = tk.PhotoImage(file="Images/arcade_game.png")
+    arcade_game = tk.Label(choice_gui,image=arcade_game_image)
+    arcade_game.pack()
     title = tk.Label(choice_gui,text="Choose Your Weapon",font=("Helvetica",32))
-    title.pack(pady=30)
+    title.pack()
+    title.place(relx=0.5,rely=0.2,anchor=tk.CENTER)
     result = Result()
 
     rock_img = tk.PhotoImage(file="Images/rock.png")
     rock = image_button(choice_gui,"rock",rock_img,result)
     rock.pack()
-    rock.place(relx=0.25,rely=0.5,anchor=tk.CENTER)
+    rock.place(relx=0.25,rely=0.455,anchor=tk.CENTER)
 
     paper_img = tk.PhotoImage(file="Images/paper.png")
     paper = image_button(choice_gui,'paper',paper_img,result)
     paper.pack()
-    paper.place(relx=0.5,rely=0.5,anchor=tk.CENTER)
+    paper.place(relx=0.5,rely=0.455,anchor=tk.CENTER)
 
     scissors_img = tk.PhotoImage(file="Images/scissors.png")
     scissors = image_button(choice_gui,'scissors',scissors_img,result)
     scissors.pack()
-    scissors.place(relx=0.75,rely=0.5,anchor=tk.CENTER)
+    scissors.place(relx=0.75,rely=0.455,anchor=tk.CENTER)
 
     choice_gui.mainloop()
     return result.result
@@ -46,12 +50,15 @@ def win_gui(choice: int, computer_choice: int, win_message: str, winner = False,
         win_message = win_message + '\nThey win!'
 
     win_gui = tk.Tk()
-    win_gui.geometry("1000x800")
-    win_gui.resizable(True,True)
+    win_gui.resizable(False,False)
     win_gui.title('Rock Paper Scissors')
-    title = tk.Label(win_gui,text="RESULTS",font=("Helvetica",32))
-    title.pack(pady=30)
-
+    arcade_game_image = tk.PhotoImage(file="Images/arcade_game.png")
+    arcade_game = tk.Label(win_gui,image=arcade_game_image)
+    arcade_game.pack()
+    win_gui.title('Rock Paper Scissors')
+    title = tk.Label(win_gui,text="RESULTS",font=("Helvetica",32),background="#FFFFFF")
+    title.pack()
+    title.place(relx=0.5,rely=0.2,anchor=tk.CENTER)
     rock = tk.PhotoImage(file="Images/rock.png")
     paper = tk.PhotoImage(file="Images/paper.png")
     scissors = tk.PhotoImage(file="Images/scissors.png")
@@ -59,25 +66,25 @@ def win_gui(choice: int, computer_choice: int, win_message: str, winner = False,
 
     player_weapon = tk.Label(win_gui,image=photo_map[choice])
     player_weapon.pack()
-    player_weapon.place(relx=0.25,rely=0.4,anchor=tk.CENTER)
+    player_weapon.place(relx=0.25,rely=0.355,anchor=tk.CENTER)
 
     computer_weapon = tk.Label(win_gui,image=photo_map[computer_choice])
     computer_weapon.pack()
-    computer_weapon.place(relx=0.75,rely=0.4,anchor=tk.CENTER)
+    computer_weapon.place(relx=0.75,rely=0.355,anchor=tk.CENTER)
 
     vs_image = tk.PhotoImage(file='Images/vs.png')
     vs = tk.Label(win_gui,image=vs_image)
     vs.pack()
-    vs.place(relx=0.5,rely=0.4,anchor=tk.CENTER)
+    vs.place(relx=0.5,rely=0.355,anchor=tk.CENTER)
 
     win = tk.Label(win_gui,text=win_message,font=('Helvetica',28))
     win.pack()
-    win.place(relx=0.5,rely=0.55,anchor=tk.CENTER)
+    win.place(relx=0.5,rely=0.505,anchor=tk.CENTER)
 
     next_img = tk.PhotoImage(file="Images/continue.png")
     next = image_button(win_gui,'next',next_img,Result())
     next.pack()
-    next.place(relx=0.5,rely=0.75,anchor=tk.CENTER)
+    next.place(relx=0.5,rely=0.655,anchor=tk.CENTER)
 
     win_gui.mainloop()
 
@@ -121,5 +128,3 @@ def rock_paper_scissors():
             return True
         elif bot_winner:
             return False
-        
-rock_paper_scissors()
