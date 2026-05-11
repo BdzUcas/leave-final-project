@@ -191,8 +191,6 @@ def block_break(root):
         sleep(0.003)
     root.mainloop()
 
-block_break(tk)
-
 #matching cards
 class Card:
     def __init__(self, canvas, x, y, width, height, face_value, on_click):
