@@ -2,6 +2,8 @@ import tkinter as tk
 from PIL import Image, ImageTk
 import time
 from treat_trios import treat_trios
+from rock_paper_scissors import *
+from arcade_games import block_break,match_cards
 
 #Beginging scene is game(Elevatorhall,1)
 def game():
@@ -98,6 +100,19 @@ def game():
 
     snobbypin = Image.open("Images/Bobbypin.png.png")
     snobbypin = ImageTk.PhotoImage(snobbypin)
+
+    arcadescene = Image.open("Images/Arcaderoom.png.png")
+    arcadescene = ImageTk.PhotoImage(arcadescene)
+
+    arcade_RPS =  Image.open("Images/arcade Machination(RPS).png")
+    arcade_RPS = ImageTk.PhotoImage(arcade_RPS)
+
+    arcade_brick =  Image.open("Images/arcade Machination(Brick).png")
+    arcade_brick = ImageTk.PhotoImage(arcade_brick)
+
+    arcade_card =  Image.open("Images/arcade Machination(Card).png")
+    arcade_card = ImageTk.PhotoImage(arcade_card)
+
     """
 
 
@@ -412,7 +427,10 @@ def game():
             root.nextbutton = tk.Button(root, text="Okay, fine.", command=lambda: dialog(30,persontalking,currentscene))
             root.nextbutton.place(relx=.5, rely=0.65, anchor="n")
         if Interaction_Num == 30:
-            itemframe_Deletion("Bobbypin",root.Testitem)
+            try:
+                itemframe_Deletion("Bobbypin",root.Testitem)
+            except:
+                pass
             itemframe_Deletion("CandyPin",root.CandyPin)
             root.Temporary_Items.append(["sbobbypinlabel",snobbypin])
             print(root.Temporary_Items)
@@ -475,6 +493,12 @@ def game():
             #Hey I Do Not know what we are really doing for the item logic so just replace this with the function for item storage
             root.Temporary_Items.append(["Bobbypin",bobbypin])
             Inventoryframes(root.Temporary_Items)
+        if ItemName == "RPS":
+            rock_paper_scissors()
+        if ItemName == "Brick":
+            
+            block_break(root)
+            pass
         if ItemName == "2dollars":
             root.dollars2bool = True
             root.item.place_forget()
@@ -570,6 +594,21 @@ def game():
         if SceneData == 7:
             root.fourthbutton = tk.Button(root, image=uparrow, command=lambda:scene(kidsection,4))
             root.fourthbutton.place(relx=.8, rely=0.45,anchor="n")
+        if SceneData == 8:
+            root.FrsButton = tk.Button(root, image=downarrow, command=lambda:scene(candystore,5))
+            root.FrsButton.place(relx=.5, rely=0.65,anchor="n")
+            root.secButton = tk.Button(root, image=downarrow, command=lambda:scene(stairs,9))
+            root.secButton.place(relx=.7, rely=0.4,anchor="n")
+        if SceneData == 9:
+            root.fourthbutton = tk.Button(root, image=uparrow, command=lambda:scene(stairs,8))
+            root.fourthbutton.place(relx=.8, rely=0.45,anchor="n")
+            root.secButton = tk.Button(root, image=downarrow, command=lambda:scene(arcadescene,12))
+            root.secButton.place(relx=.5, rely=0.65,anchor="n")
+        if SceneData == 12:
+            root.secButton = tk.Button(root, image=downarrow, command=lambda:scene(stairs,9))
+            root.secButton.place(relx=.5, rely=0.65,anchor="n")
+
+           
             #root.frsButton.place(relx=.02, rely=0.5,anchor="n")
     def SceneItems(SceneData):
 
@@ -603,6 +642,11 @@ def game():
         if SceneData == 7:
             root.Dailog = tk.Button(root, image=dialouginteraction, command=lambda: item("toystoredialogue"))
             root.Dailog.place(relx=.25, rely=0.1,anchor="n")
+        if SceneData == 12:
+            root.item = tk.Button(root, image=arcade_RPS, command=lambda: item("RPS"))
+            root.item.place(relx=.43, rely=0.25,anchor="n")
+            root.item2 = tk.Button(root, image=arcade_brick, command=lambda: item("Brick"))
+            root.item2.place(relx=.53, rely=0.25,anchor="n")
         
             
     def scene(background,SceneData):
@@ -616,3 +660,5 @@ def game():
     #Test scene Data
     scene(elevatorhall,1)
     root.mainloop()
+
+game()
