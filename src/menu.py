@@ -1,5 +1,6 @@
 from data import *
 from gui import gui,gui_input
+from MainGameGui import *
 def main():
     def get_users():
         users = csv_to_dictionary('docs/users.csv')
@@ -30,6 +31,8 @@ def main():
                     if not login(user_data):
                         continue
                     #MAIN GAME FUNCTION GOES HERE
+                    game("None",1)
+
                 else:
                     gui([f'The username {username} is not associated with an account!','[Back to Menu'])
                     continue 
@@ -47,6 +50,7 @@ def main():
                 users.append({'username':username})
                 save_csv(users,'docs/users.csv')
                 #MAIN GAME FUNCTION GOES HERE
+                game("None",1)
             case 'Quit':
                 return
             

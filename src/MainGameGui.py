@@ -3,7 +3,7 @@ from PIL import Image, ImageTk
 import time
 from treat_trios import treat_trios
 
-#Beginging scene is (Elevatorhall,1)
+#Beginging scene is game(Elevatorhall,1)
 def game(startScene):
     root = tk.Tk()
     root.title("IDK MAN")
@@ -614,5 +614,5 @@ def game(startScene):
 
 
     #Test scene Data
-    scene(startScene[0],startScene[1])
+    scene(Elevatorhall,startScene[1])
     root.mainloop()
