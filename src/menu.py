@@ -31,7 +31,7 @@ def main():
                     if not login(user_data):
                         continue
                     #MAIN GAME FUNCTION GOES HERE
-                    game("None",1)
+                    game()
 
                 else:
                     gui([f'The username {username} is not associated with an account!','[Back to Menu'])
@@ -50,7 +50,7 @@ def main():
                 users.append({'username':username})
                 save_csv(users,'docs/users.csv')
                 #MAIN GAME FUNCTION GOES HERE
-                game("None",1)
+                game()
             case 'Quit':
                 return
             

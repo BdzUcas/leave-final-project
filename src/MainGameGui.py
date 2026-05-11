@@ -4,7 +4,7 @@ import time
 from treat_trios import treat_trios
 
 #Beginging scene is game(Elevatorhall,1)
-def game(startScene):
+def game():
     root = tk.Tk()
     root.title("IDK MAN")
 
@@ -614,5 +614,5 @@ def game(startScene):
 
 
     #Test scene Data
-    scene(Elevatorhall,startScene[1])
+    scene(elevatorhall,1)
     root.mainloop()
