@@ -155,13 +155,15 @@ def block_break(root):
 
     for x, y in bricks_pos:
         bricks.append(Brick(canvas, x, y, 80, 20, "white"))
-
+    sleep(1)
     while True:
         #lose condition
         if ball.hit_bottom:
             canvas.create_text(500, 400, text="GAME OVER", fill="white", font=("Helvetica", 32))
             root.update()
-            break
+            sleep(1)
+            root.destroy()
+            return False
 
         root.update()
         ball.movement()
@@ -186,10 +188,13 @@ def block_break(root):
         if count_brick == 0:
             canvas.create_text(500, 400, text="YOU WIN!", fill="white", font=("Helvetica", 32))
             root.update()
-            break
+            sleep(1)
+            root.destroy()
+            return True
 
         sleep(0.003)
     root.mainloop()
+
 
 #matching cards
 class Card:
@@ -286,6 +291,8 @@ def match_cards(root):
         #check if all cards are facing up for the win conditions
         if all(card.matched for card in cards):
             canvas.create_text(500, 400, text="YOU WIN!", fill="white", font=("Arial", 48))
+            root.destroy()
+            
 
     #set up the card objects and their values
     for row in range(4):
@@ -298,3 +305,5 @@ def match_cards(root):
 
     #use mainloop in order to keep window open.
     root.mainloop()
+    return all(card.matched for card in cards)
+tk.destroy()

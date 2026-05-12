@@ -1,6 +1,22 @@
 from data import *
 from gui import gui,gui_input
-from MainGameGui import *
+            
+def choose_save_file(user_data):
+    try:
+        user_data['save_files']
+    except:
+        user_data['save_files'] = {gui_input('Name your first save file:'): {}}
+    buttons = ['[' + i for i in user_data['save_files'].keys()]
+    save_file = gui(['Choose save file:'] + buttons + ['[Create new save file'],15)
+    if save_file == 'Create new save file':
+        save_file = gui_input('Name your save file:')
+        user_data['save_files'][save_file] = {}
+    return user_data['save_files'][save_file]
+
+def run_game(username,user_data):
+    data = choose_save_file(user_data)
+    #MAIN GAME FUNCTION GOES HERE
+    json_dump(f'docs/{username}.json',user_data)
 def main():
     def get_users():
         users = csv_to_dictionary('docs/users.csv')
@@ -30,9 +46,7 @@ def main():
                         continue
                     if not login(user_data):
                         continue
-                    #MAIN GAME FUNCTION GOES HERE
-                    game()
-
+                    run_game(username,user_data)
                 else:
                     gui([f'The username {username} is not associated with an account!','[Back to Menu'])
                     continue 
@@ -49,9 +63,8 @@ def main():
                 users = csv_to_dictionary('docs/users.csv')
                 users.append({'username':username})
                 save_csv(users,'docs/users.csv')
-                #MAIN GAME FUNCTION GOES HERE
-                game()
+                run_game(username,user_data)
             case 'Quit':
                 return
-            
+
 main()
