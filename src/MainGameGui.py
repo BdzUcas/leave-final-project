@@ -6,7 +6,7 @@ from rock_paper_scissors import *
 from arcade_games import block_break,match_cards
 
 #Beginging scene is game(Elevatorhall,1)
-def game():
+def game(Scene_Value):
     root = tk.Tk()
     root.title("IDK MAN")
 
@@ -658,7 +658,25 @@ def game():
 
 
     #Test scene Data
-    scene(elevatorhall,1)
+    if Scene_Value == 1:
+        scene(elevatorhall,Scene_Value)
+    elif Scene_Value == 2:
+        scene(main10,Scene_Value)
+    elif Scene_Value == 3:
+        scene(garden,Scene_Value)
+    elif Scene_Value == 4:
+        scene(kidsection,Scene_Value)
+    elif Scene_Value == 5:
+        scene(candystore,Scene_Value)
+    elif Scene_Value == 6:
+        scene(infodesk,Scene_Value)
+    elif Scene_Value == 7:
+        scene(toystore,Scene_Value)
+    elif Scene_Value == 8:
+        scene(stairs,Scene_Value)
+    elif Scene_Value == 9:
+        scene(stairs,Scene_Value)
+    elif Scene_Value == 12:
+        scene(arcadescene,Scene_Value)
     root.mainloop()
 
-game()
