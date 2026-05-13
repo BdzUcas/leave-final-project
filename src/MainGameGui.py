@@ -2,8 +2,7 @@ import tkinter as tk
 from PIL import Image, ImageTk
 import time
 from treat_trios import treat_trios
-from rock_paper_scissors import *
-from arcade_games import block_break,match_cards
+from arcade import arcade as run_arcade
 
 #Beginging scene is game(Elevatorhall,1)
 def game():
@@ -145,7 +144,9 @@ def game():
     root.boobypinbool = False
     root.dollars2bool = False
     root.stairsavailible = False
-
+    root.rps_won = False
+    root.breaker_won = False
+    root.match_won = False
 
     #The main part
     #itemframe_btn = tk.Button(root, image=itemframe)
@@ -310,7 +311,7 @@ def game():
         if Interaction_Num == 12:
             root.Dialogue = tk.Label(root, text="““Hm…I’ll give you this.\n h”“A ‘Candy Smash’ ticket…?”", font=("Arial", 40), bg="tan")
             root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
-            root.nextbutton = tk.Button(root, text=" Like…for the arcade on floor 5?", command=lambda: dialog(13,persontalking,currentscene))
+            root.nextbutton = tk.Button(root, text=" Like…for the arcade on floor 9?", command=lambda: dialog(13,persontalking,currentscene))
             root.nextbutton.place(relx=.5, rely=0.65, anchor="n")
         if Interaction_Num == 13:
             root.Dialogue = tk.Label(root, text="Nah. It’s for that video game in the candy store.", font=("Arial", 40), bg="tan")
@@ -494,11 +495,11 @@ def game():
             root.Temporary_Items.append(["Bobbypin",bobbypin])
             Inventoryframes(root.Temporary_Items)
         if ItemName == "RPS":
-            rock_paper_scissors()
+            root.rps_won,root.breaker_won,root.match_won = run_arcade(root.rps_won,root.breaker_won,root.match_won)
         if ItemName == "Brick":
-            
-            block_break(root)
-            pass
+            root.rps_won,root.breaker_won,root.match_won = run_arcade(root.rps_won,root.breaker_won,root.match_won)
+        if ItemName == "Match":
+            root.rps_won,root.breaker_won,root.match_won = run_arcade(root.rps_won,root.breaker_won,root.match_won)
         if ItemName == "2dollars":
             root.dollars2bool = True
             root.item.place_forget()
@@ -647,6 +648,8 @@ def game():
             root.item.place(relx=.43, rely=0.25,anchor="n")
             root.item2 = tk.Button(root, image=arcade_brick, command=lambda: item("Brick"))
             root.item2.place(relx=.53, rely=0.25,anchor="n")
+            root.item3 = tk.Button(root, image=arcade_card, command=lambda: item("Match"))
+            root.item3.place(relx=.63, rely=0.25,anchor="n")
         
             
     def scene(background,SceneData):
@@ -658,7 +661,8 @@ def game():
 
 
     #Test scene Data
-    scene(elevatorhall,1)
+    #scene(elevatorhall,1)
+    scene(arcadescene,12)
     root.mainloop()
 
 game()
