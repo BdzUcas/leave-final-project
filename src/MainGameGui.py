@@ -235,18 +235,22 @@ def game(Scene_Value):
             root.button2 = tk.Button(root, text="Don't worry, I just need to get something for my parents. The elevator is broken by the way.", command=lambda: dialog(5,persontalking,currentscene))
             root.button2.place(relx=.4, rely=0.65, anchor="n")
         if Interaction_Num == 3:
-            root.Dialogue = tk.Label(root, text="Well, the owner of this store of course!", font=("Arial", 40), bg="tan")
+            root.Dialogue = tk.Label(root, text="Well, i'm the owner of this store of course!", font=("Arial", 40), bg="tan")
             root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
+            root.button1 = tk.Button(root, text="I need to get down to floor 9…", command=lambda: dialog(2,persontalking,currentscene))
+            root.button1.place(relx=.5, rely=0.65, anchor="n")
             root.nextbutton = tk.Button(root, text="Goodbye.", command=lambda: dialog(0,persontalking,currentscene))
             root.nextbutton.place(relx=.5, rely=0.75, anchor="n")
         if Interaction_Num == 4:
             root.Dialogue = tk.Label(root, text="Eh, they're fine.", font=("Arial", 40), bg="tan")
             root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
+            root.button1 = tk.Button(root, text="I need to get down to floor 9…", command=lambda: dialog(2,persontalking,currentscene))
+            root.button1.place(relx=.5, rely=0.65, anchor="n")
             root.nextbutton = tk.Button(root, text="Goodbye.", command=lambda: dialog(0,persontalking,currentscene))
             root.nextbutton.place(relx=.5, rely=0.75, anchor="n")
         if Interaction_Num == 5:
             tempbool = False
-            root.Dialogue = tk.Label(root, text=f"If you say so. Now…I did lose the key…\nso if you have something we can lockpick with, then let's use it.", font=("Arial", 40), bg="tan")
+            root.Dialogue = tk.Label(root, text=f"If you say so. Now… I did lose the key…\nso if you have something we can lockpick it with, then i can let you down.", font=("Arial", 40), bg="tan")
             root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
             for x in root.Temporary_Items:
                 if x[0] == "Bobbypin":
@@ -255,7 +259,7 @@ def game(Scene_Value):
                     tempbool = True
 
             if tempbool == True:
-                root.button1 = tk.Button(root, text="Give Bobby pin", command=lambda: dialog(6,persontalking,currentscene))
+                root.button1 = tk.Button(root, text="I have this bobby pin!", command=lambda: dialog(6,persontalking,currentscene))
                 root.button1.place(relx=.3, rely=0.65, anchor="n")
             
             root.button2 = tk.Button(root, text="Let me go look for something.", command=lambda: dialog(0,persontalking,currentscene))
@@ -278,7 +282,7 @@ def game(Scene_Value):
                 root.nextbutton.place(relx=.5, rely=0.75, anchor="n")
                 root.stairsavailible = True        
             elif tempbool == True:        
-                root.Dialogue = tk.Label(root, text="It seems I broke the bobby pin.\n If only you could get me a diffrent one it might work.", font=("Arial", 40), bg="tan")
+                root.Dialogue = tk.Label(root, text="It seems I broke the bobby pin.\n If only you could get me a diffrent one, it might work.", font=("Arial", 40), bg="tan")
                 root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
                 root.nextbutton = tk.Button(root, text="Goodbye.", command=lambda: dialog(0,persontalking,currentscene))
                 root.nextbutton.place(relx=.5, rely=0.75, anchor="n")
@@ -319,19 +323,19 @@ def game(Scene_Value):
             root.nextbutton = tk.Button(root, text="Oh. That kinda sucks.", command=lambda: dialog(11,persontalking,currentscene))
             root.nextbutton.place(relx=.5, rely=0.65, anchor="n")
         if Interaction_Num == 11:
-            root.Dialogue = tk.Label(root, text="Say, if you find any, can you give them to me?", font=("Arial", 40), bg="tan")
+            root.Dialogue = tk.Label(root, text="Say, if you find any, will you give them to me?", font=("Arial", 40), bg="tan")
             root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
             root.nextbutton = tk.Button(root, text="What do I get in return?", command=lambda: dialog(12,persontalking,currentscene))
             root.nextbutton.place(relx=.5, rely=0.65, anchor="n")
         if Interaction_Num == 12:
-            root.Dialogue = tk.Label(root, text="Hm…I'll give you this\n Treat Trios ticket!", font=("Arial", 40), bg="tan")
+            root.Dialogue = tk.Label(root, text="Hmm… I'll give you this\n Treat Trios ticket!", font=("Arial", 40), bg="tan")
             root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
-            root.nextbutton = tk.Button(root, text=" Like…for the arcade on floor 9?", command=lambda: dialog(13,persontalking,currentscene))
+            root.nextbutton = tk.Button(root, text=" Like… for the arcade on floor 9?", command=lambda: dialog(13,persontalking,currentscene))
             root.nextbutton.place(relx=.5, rely=0.65, anchor="n")
         if Interaction_Num == 13:
             root.Dialogue = tk.Label(root, text="Nah. It's for that video game in the candy store.", font=("Arial", 40), bg="tan")
             root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
-            root.nextbutton = tk.Button(root, text="Oh. Great. Fine…I'll take it…", command=lambda: dialog(7,persontalking,currentscene))
+            root.nextbutton = tk.Button(root, text="Oh. Well, fine… I'll take it.", command=lambda: dialog(7,persontalking,currentscene))
             root.nextbutton.place(relx=.5, rely=0.65, anchor="n")
         if Interaction_Num == 14:
             root.Dialogue = tk.Label(root, text="Hello, are you ready to make a purchase?\n We have toy cars on sale for only $7", font=("Arial", 40), bg="tan")
@@ -339,7 +343,7 @@ def game(Scene_Value):
             root.nextbutton = tk.Button(root, text="Goodbye.", command=lambda: dialog(0,persontalking,currentscene))
             root.nextbutton.place(relx=.5, rely=0.75, anchor="n")
             if root.currency >= 7:
-                root.button1 = tk.Button(root, text="Oh. Great. Fine…I'll take it…", command=lambda: dialog(15,persontalking,currentscene))
+                root.button1 = tk.Button(root, text="Sure. I'll take it.", command=lambda: dialog(15,persontalking,currentscene))
                 root.button1.place(relx=.5, rely=0.65, anchor="n")
         if Interaction_Num == 15:
             root.currency -= 7
@@ -366,9 +370,9 @@ def game(Scene_Value):
             kill()
             dialog(18,persontalking,currentscene)
         if Interaction_Num == 18:
-            root.Dialogue = tk.Label(root, text="Oh, have this for getting me the cars.\n (He gives you the ticket)", font=("Arial", 40), bg="tan")
+            root.Dialogue = tk.Label(root, text="Oh, have this in return.\n (He gives you the ticket)", font=("Arial", 40), bg="tan")
             root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
-            root.nextbutton = tk.Button(root, text="Uh, byeee…", command=lambda: dialog(19,persontalking,currentscene))
+            root.nextbutton = tk.Button(root, text="Uh, bye…", command=lambda: dialog(19,persontalking,currentscene))
             root.nextbutton.place(relx=.5, rely=0.65, anchor="n")
         if Interaction_Num == 19:
             itemframe_Deletion("Toycars",root.Toycars)
@@ -376,7 +380,7 @@ def game(Scene_Value):
             Inventoryframes(root.Temporary_Items)
             dialog(0,persontalking,currentscene)
         if Interaction_Num == 20:
-            root.Dialogue = tk.Label(root, text="What do you want…?", font=("Arial", 40), bg="tan")
+            root.Dialogue = tk.Label(root, text="What do you want?", font=("Arial", 40), bg="tan")
             root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
             root.nextbutton = tk.Button(root, text="Goodbye.", command=lambda: dialog(0,persontalking,currentscene))
             root.nextbutton.place(relx=.5, rely=0.75, anchor="n")
@@ -391,17 +395,17 @@ def game(Scene_Value):
             root.button1 = tk.Button(root, text="Dave.", command=lambda: dialog(20,persontalking,currentscene))
             root.button1.place(relx=.5, rely=0.65, anchor="n")
         if Interaction_Num == 22:
-            root.Dialogue = tk.Label(root, text="Um, a lollipop.\n Why?", font=("Arial", 40), bg="tan")
+            root.Dialogue = tk.Label(root, text="Umm, a lollipop.\n Why?", font=("Arial", 40), bg="tan")
             root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
             root.nextbutton = tk.Button(root, text="Did you get it from the Candy Store?", command=lambda: dialog(23,persontalking,currentscene))
             root.nextbutton.place(relx=.5, rely=0.65, anchor="n")
         if Interaction_Num == 23:
             root.Dialogue = tk.Label(root, text="Yeah\n You know what?\nI kind of wanted to play that game they have in there.", font=("Arial", 40), bg="tan")
             root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
-            root.nextbutton = tk.Button(root, text="That crap?? Why that of all games??", command=lambda: dialog(24,persontalking,currentscene))
+            root.nextbutton = tk.Button(root, text="That crap?? Why that, of all games??", command=lambda: dialog(24,persontalking,currentscene))
             root.nextbutton.place(relx=.5, rely=0.65, anchor="n")
         if Interaction_Num == 24:
-            root.Dialogue = tk.Label(root, text="I meant I wanted the pin, but you have to get it from playing the game.", font=("Arial", 40), bg="tan")
+            root.Dialogue = tk.Label(root, text="I meant I wanted the pin, but you can only get it from playing the game.", font=("Arial", 40), bg="tan")
             root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
             root.nextbutton = tk.Button(root, text="Uh-huh, okay. Why can't you play the game then?", command=lambda: dialog(25,persontalking,currentscene))
             root.nextbutton.place(relx=.5, rely=0.65, anchor="n")
@@ -419,8 +423,8 @@ def game(Scene_Value):
             else:
                 root.nextbutton = tk.Button(root, text="I'll see if I can get one for you.", command=lambda: dialog(26,persontalking,currentscene))
                 root.nextbutton.place(relx=.5, rely=0.65, anchor="n")
-                root.button1 = tk.Button(root, text="I have your pin.", command=lambda: dialog(29,persontalking,currentscene))
-                root.button1.place(relx=.35, rely=0.65, anchor="n")
+                root.button1 = tk.Button(root, text="I have the pin you wanted.", command=lambda: dialog(29,persontalking,currentscene))
+                root.button1.place(relx=.3, rely=0.65, anchor="n")
         if Interaction_Num == 26:
             root.Dialogue = tk.Label(root, text="Can't you just play it for me?", font=("Arial", 40), bg="tan")
             root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
@@ -432,12 +436,12 @@ def game(Scene_Value):
             root.nextbutton = tk.Button(root, text="What am I going to do with it?", command=lambda: dialog(28,persontalking,currentscene))
             root.nextbutton.place(relx=.5, rely=0.65, anchor="n")
         if Interaction_Num == 28:
-            root.Dialogue = tk.Label(root, text="Maybe lock pick? \n I heard you can do it with a bobby pin.", font=("Arial", 40), bg="tan")
+            root.Dialogue = tk.Label(root, text="Maybe pick a lock? \n I heard you can do it with a bobby pin.", font=("Arial", 40), bg="tan")
             root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
             root.nextbutton = tk.Button(root, text="Okay, fine.", command=lambda: dialog(0,persontalking,currentscene))
             root.nextbutton.place(relx=.5, rely=0.65, anchor="n")
         if Interaction_Num == 29:
-            root.Dialogue = tk.Label(root, text="Oh, you really did get it…\nThank you!\nWell, fine…I'll give you my bobby pin, then.", font=("Arial", 40), bg="tan")
+            root.Dialogue = tk.Label(root, text="Oh, you really did get it…\nThank you!\nWell, fine… I'll give you my bobby pin, then.", font=("Arial", 40), bg="tan")
             root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
             
             root.nextbutton = tk.Button(root, text="Okay, fine.", command=lambda: dialog(30,persontalking,currentscene))
@@ -454,7 +458,7 @@ def game(Scene_Value):
             dialog(0,persontalking,currentscene)
 
         if Interaction_Num == 31:
-            root.Dialogue = tk.Label(root, text="Um…hello there.", font=("Arial", 40), bg="tan")
+            root.Dialogue = tk.Label(root, text="Um… hello there.", font=("Arial", 40), bg="tan")
             root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
             root.nextbutton = tk.Button(root, text="Goodbye", command=lambda: dialog(0,persontalking,currentscene))
             root.nextbutton.place(relx=.5, rely=0.75, anchor="n")
@@ -709,7 +713,7 @@ def game(Scene_Value):
             root.Dailog.place(relx=.25, rely=0.1,anchor="n")
         if SceneData == 10:
             root.Dailog = tk.Button(root, image=dialouginteraction, command=lambda: item("Shydudetalk"))
-            root.Dailog.place(relx=.75, rely=0.1,anchor="n")
+            root.Dailog.place(relx=.93, rely=0.1,anchor="n")
         if SceneData == 15:
             root.item = tk.Button(root, image=arcade_RPS, command=lambda: item("RPS"))
             root.item.place(relx=.43, rely=0.25,anchor="n")
