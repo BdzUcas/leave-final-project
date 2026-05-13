@@ -219,7 +219,7 @@ def game():
             root.button2 = tk.Button(root, text="Don't worry, I just need to get something for my parents. The elevator is broken by the way.", command=lambda: dialog(5,persontalking,currentscene))
             root.button2.place(relx=.4, rely=0.65, anchor="n")
         if Interaction_Num == 3:
-            root.Dialogue = tk.Label(root, text="Well, the owner of this store of course!”", font=("Arial", 40), bg="tan")
+            root.Dialogue = tk.Label(root, text="Well, the owner of this store of course!", font=("Arial", 40), bg="tan")
             root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
             root.nextbutton = tk.Button(root, text="Goodbye.", command=lambda: dialog(0,persontalking,currentscene))
             root.nextbutton.place(relx=.5, rely=0.75, anchor="n")
