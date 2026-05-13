@@ -175,7 +175,7 @@ def list_choice(choices,prompt = 'Choose an option:'):
     #loop through that list
     for i in choice_ints:
         #print each item with its number (ie 1. Thing 1)
-        print(f'{i}. {f('gray',choices[i-1].title())}')
+        print(f"{i}. {f('gray', choices[i-1].title())}")
     #get an input that is either a number assigned to an item or one of the items
     chosen = choice_input(choice_ints + choices)
     #if it was a number assigned to an item
