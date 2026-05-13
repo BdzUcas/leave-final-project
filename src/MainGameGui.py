@@ -6,7 +6,7 @@ from arcade import arcade as run_arcade
 #Beginging scene is game(Elevatorhall,1)
 def game(Scene_Value):
     root = tk.Tk()
-    root.title("IDK MAN")
+    root.title("Game")
 
 
     root.configure(background="light blue")
