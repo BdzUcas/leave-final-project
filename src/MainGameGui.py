@@ -22,7 +22,7 @@ def game(Scene_Value):
     Selitemframe = Image.open("Images/SlectedItemFrame.png.png")
     Selitemframe = ImageTk.PhotoImage(Selitemframe)
 
-    elevatorhall = Image.open("Images/ElevatorHall.png.png")
+    elevatorhall = Image.open("Images/ElevatorHallOutOfOrder.png")
     elevatorhall = ImageTk.PhotoImage(elevatorhall)
 
     main10 = Image.open("Images/Mainfloor10.png.png")
