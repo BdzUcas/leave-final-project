@@ -110,7 +110,7 @@ def rock_paper_scissors():
         elif (choice == 1 and computer_choice == 3) or (choice == 2 and computer_choice == 1) or (choice == 3 and computer_choice == 2):
             win_message = f'Your {choices[choice]}{actions[choice]}their {choices[computer_choice]}!'
             score += 1
-        else:
+        elif:
             win_message = f'Their {choices[computer_choice]}{actions[computer_choice]}your {choices[choice]}!'
             bot_score += 1
         else:
