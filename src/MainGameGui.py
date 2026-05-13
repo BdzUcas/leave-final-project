@@ -12,8 +12,9 @@ def game():
 
 
     root.configure(background="light blue")
-    root.minsize(2600,1400)
-    root.maxsize(2600,1400)
+    w = root.winfo_screenwidth()
+    h = root.winfo_screenheight()
+    root.geometry(f"{w}x{h}")
 
     #Images
 
@@ -514,17 +515,12 @@ def game():
             for x in root.Temporary_Items:
                 if x[0] == "CandyTicket":
                     root.item.place_forget()
-                    try:
-                        treat_trios()
-
-                        root.item = tk.Button(root, image=candy_arcade, command=lambda: item("candy_arcade"))
-                        root.item.place(relx=.75, rely=0.2,anchor="n")
+                    won = treat_trios()
+                    if won:
                         root.Temporary_Items.append(["CandyPin",candypin])
-                    except:
-                        itemframe_Deletion("CandyTicket",root.CandyTicket)
-                        root.item = tk.Button(root, image=candy_arcade, command=lambda: item("candy_arcade"))
-                        root.item.place(relx=.75, rely=0.2,anchor="n")
-                        root.Temporary_Items.append(["CandyPin",candypin])
+                    itemframe_Deletion("CandyTicket",root.CandyTicket)
+                    root.item = tk.Button(root, image=candy_arcade, command=lambda: item("candy_arcade"))
+                    root.item.place(relx=.75, rely=0.2,anchor="n")
                     Inventoryframes(root.Temporary_Items)
         if ItemName == "Kid1Dialogue":
             dialog(7,"Kid 1",[kidsection,4])
@@ -661,4 +657,5 @@ def game():
     scene(elevatorhall,1)
     root.mainloop()
 
-game()
+if __name__ == '__main__':
+    game()

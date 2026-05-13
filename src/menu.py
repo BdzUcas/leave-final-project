@@ -1,5 +1,6 @@
 from data import *
 from gui import gui,gui_input
+from MainGameGui import game as launch_game
             
 def choose_save_file(user_data):
     try:
@@ -15,8 +16,8 @@ def choose_save_file(user_data):
 
 def run_game(username,user_data):
     data = choose_save_file(user_data)
-    #MAIN GAME FUNCTION GOES HERE
     json_dump(f'docs/{username}.json',user_data)
+    launch_game()
 def main():
     def get_users():
         users = csv_to_dictionary('docs/users.csv')
