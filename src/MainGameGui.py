@@ -121,6 +121,9 @@ def game(Scene_Value):
     fish_Station = Image.open("Images/FishStore.png.png")
     fish_Station = ImageTk.PhotoImage(fish_Station)
 
+    floor9 = Image.open("Images/main area of arcade floor.png")
+    floor9 = ImageTk.PhotoImage(floor9)
+
 
 
     """
@@ -155,6 +158,10 @@ def game(Scene_Value):
     root.boobypinbool = False
     root.dollars2bool = False
     root.stairsavailible = False
+    root.orderrecipt = False
+    root.orderdone = False
+    root.CanFloor9 = False
+    root.canel = False
     root.rps_won = False
     root.breaker_won = False
     root.match_won = False
@@ -458,12 +465,19 @@ def game(Scene_Value):
             dialog(0,persontalking,currentscene)
 
         if Interaction_Num == 31:
-            root.Dialogue = tk.Label(root, text="Um… hello there.", font=("Arial", 40), bg="tan")
-            root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
-            root.nextbutton = tk.Button(root, text="Goodbye", command=lambda: dialog(0,persontalking,currentscene))
-            root.nextbutton.place(relx=.5, rely=0.75, anchor="n")
-            root.button1 = tk.Button(root, text="Are you waiting for something?", command=lambda: dialog(32,persontalking,currentscene))
-            root.button1.place(relx=.5, rely=0.65, anchor="n")
+            if root.orderdone == False:
+                root.Dialogue = tk.Label(root, text="Um…hello there.", font=("Arial", 40), bg="tan")
+                root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
+                root.nextbutton = tk.Button(root, text="Goodbye", command=lambda: dialog(0,persontalking,currentscene))
+                root.nextbutton.place(relx=.5, rely=0.75, anchor="n")
+                root.button1 = tk.Button(root, text="Are you waiting for something?", command=lambda: dialog(32,persontalking,currentscene))
+                root.button1.place(relx=.5, rely=0.65, anchor="n")
+            else:
+                root.Dialogue = tk.Label(root, text="Oh…thanks.\n“Here’s the $10 as promised.", font=("Arial", 40), bg="tan")
+                root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
+                root.currency += 10
+                root.nextbutton = tk.Button(root, text="You also told me where the elevators are.", command=lambda: dialog(40,persontalking,currentscene))
+                root.nextbutton.place(relx=.5, rely=0.75, anchor="n")
         if Interaction_Num == 32:
             root.Dialogue = tk.Label(root, text="I have to go get my food from Fresh Filet \n but I don’t feel like it.", font=("Arial", 40), bg="tan")
             root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
@@ -489,8 +503,35 @@ def game(Scene_Value):
         if Interaction_Num == 36:
             root.Dialogue = tk.Label(root, text="Um, it’s Order 166.", font=("Arial", 40), bg="tan")
             root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
+            root.orderrecipt = True
             root.button1 = tk.Button(root, text="Leave", command=lambda: dialog(0,persontalking,currentscene))
             root.button1.place(relx=.5, rely=0.65, anchor="n")
+        if Interaction_Num == 37:
+            root.Dialogue = tk.Label(root, text="Kid do you have a order number", font=("Arial", 40), bg="tan")
+            root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
+            if root.orderrecipt == False:
+                root.button1 = tk.Button(root, text="No sir", command=lambda: dialog(0,persontalking,currentscene))
+                root.button1.place(relx=.5, rely=0.65, anchor="n")
+            else:
+                root.button1 = tk.Button(root, text="Yes I do it is order 166", command=lambda: dialog(38,persontalking,currentscene))
+                root.button1.place(relx=.5, rely=0.65, anchor="n")
+        if Interaction_Num == 38:
+            root.Dialogue = tk.Label(root, text="Okay here you go", font=("Arial", 40), bg="tan")
+            root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
+            root.button1 = tk.Button(root, text="Thank you", command=lambda: dialog(39,persontalking,currentscene))
+            root.button1.place(relx=.5, rely=0.65, anchor="n")
+        if Interaction_Num == 39:
+            root.orderdone = True
+            dialog(0,persontalking,currentscene)
+        if Interaction_Num == 40:
+            root.Dialogue = tk.Label(root, text="Right…ok. Go to the main area and face the info desk\n…the elevators should be on the right", font=("Arial", 40), bg="tan")
+            root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
+            root.button1 = tk.Button(root, text="Thank you", command=lambda: dialog(41,persontalking,currentscene))
+            root.button1.place(relx=.5, rely=0.65, anchor="n")
+        if Interaction_Num == 41:
+            root.CanFloor9 = True
+            dialog(0,persontalking,currentscene)
+        
         if Interaction_Num == 0:
             scene(currentscene[0],currentscene[1])
     def itemframe_Deletion(Item_type,Item_Name):
@@ -586,6 +627,8 @@ def game(Scene_Value):
             dialog(20,"Kid 2",[kidsection,4])
         if ItemName == "Shydudetalk":
             dialog(31,"Shy guy",[food_court,10])
+        if ItemName == "fish":
+            dialog(37,"Fish store worker",[fish_Station,11])
 
 
     def SceneButtons(SceneData):
@@ -666,15 +709,35 @@ def game(Scene_Value):
             root.secButton = tk.Button(root, image=downarrow, command=lambda:scene(stairs,9))
             root.secButton.place(relx=.5, rely=0.65,anchor="n")
             root.FrsButton = tk.Button(root, image=uparrow, command=lambda:scene(Boorage_boost,12))
-            root.FrsButton.place(relx=.2, rely=0.45,anchor="n")
+            root.FrsButton.place(relx=.15, rely=0.45,anchor="n")
+            if root.CanFloor9 == True:
+                root.thirdButton = tk.Button(root, image=rightarrow, command=lambda:scene(floor9,13))
+                root.thirdButton.place(relx=.95, rely=0.5,anchor="n")
         if SceneData == 11:
             root.secButton = tk.Button(root, image=downarrow, command=lambda:scene(food_court,10))
             root.secButton.place(relx=.5, rely=0.65,anchor="n")
         if SceneData == 12:
             root.secButton = tk.Button(root, image=downarrow, command=lambda:scene(food_court,10))
             root.secButton.place(relx=.5, rely=0.65,anchor="n")
+        if SceneData == 13:
+            root.fourthbutton = tk.Button(root, image=uparrow, command=lambda:scene(arcadescene,16))
+            root.fourthbutton.place(relx=.65, rely=0.2,anchor="n")
+            root.secButton = tk.Button(root, image=uparrow, command=lambda:scene(infodesk,14))
+            root.secButton.place(relx=.35, rely=0.2,anchor="n")
+            root.FrsButton = tk.Button(root, image=leftarrow, command=lambda:scene(food_court,10))
+            root.FrsButton.place(relx=.15, rely=0.5,anchor="n")
+        if SceneData == 14:
+            root.secButton = tk.Button(root, image=downarrow, command=lambda:scene(floor9,13))
+            root.secButton.place(relx=.5, rely=0.65,anchor="n")
+            root.fourthbutton = tk.Button(root, image=uparrow, command=lambda:scene(elevatorhall,15))
+            root.fourthbutton.place(relx=.65, rely=0.2,anchor="n")
         if SceneData == 15:
-            root.secButton = tk.Button(root, image=downarrow, command=lambda:scene(stairs,9))
+            root.secButton = tk.Button(root, image=downarrow, command=lambda:scene(infodesk,14))
+            root.secButton.place(relx=.5, rely=0.65,anchor="n")
+            if root.canel == True:
+                pass
+        if SceneData == 16:
+            root.secButton = tk.Button(root, image=downarrow, command=lambda:scene(floor9,13))
             root.secButton.place(relx=.5, rely=0.65,anchor="n")
 
            
@@ -683,6 +746,14 @@ def game(Scene_Value):
 
         try:
             root.item.place_forget()
+        except:
+            pass
+        try:
+            root.item2.place_forget()
+        except:
+            pass
+        try:
+            root.item3.place_forget()
         except:
             pass
         try:
@@ -714,7 +785,10 @@ def game(Scene_Value):
         if SceneData == 10:
             root.Dailog = tk.Button(root, image=dialouginteraction, command=lambda: item("Shydudetalk"))
             root.Dailog.place(relx=.93, rely=0.1,anchor="n")
-        if SceneData == 15:
+        if SceneData == 11:
+            root.Dailog = tk.Button(root, image=dialouginteraction, command=lambda: item("fish"))
+            root.Dailog.place(relx=.55, rely=0.1,anchor="n")
+        if SceneData == 16:
             root.item = tk.Button(root, image=arcade_RPS, command=lambda: item("RPS"))
             root.item.place(relx=.43, rely=0.25,anchor="n")
             root.item2 = tk.Button(root, image=arcade_brick, command=lambda: item("Brick"))
