@@ -187,6 +187,10 @@ def game(Scene_Value):
             root.button3.place_forget()
         except:
             pass
+        try:
+            root.item.place_forget()
+        except:
+            pass
     def dialog(Interaction_Num,persontalking,currentscene):
         scene(dialoguebox,0)
         root.nametag = tk.Label(root, text=persontalking, font=("Arial", 70), bg="tan")
@@ -416,7 +420,7 @@ def game(Scene_Value):
                 root.nextbutton = tk.Button(root, text="I'll see if I can get one for you.", command=lambda: dialog(26,persontalking,currentscene))
                 root.nextbutton.place(relx=.5, rely=0.65, anchor="n")
                 root.button1 = tk.Button(root, text="I have your pin.", command=lambda: dialog(29,persontalking,currentscene))
-                root.button1.place(relx=.5, rely=0.5, anchor="n")
+                root.button1.place(relx=.35, rely=0.65, anchor="n")
         if Interaction_Num == 26:
             root.Dialogue = tk.Label(root, text="Can't you just play it for me?", font=("Arial", 40), bg="tan")
             root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
@@ -481,7 +485,7 @@ def game(Scene_Value):
         if Interaction_Num == 36:
             root.Dialogue = tk.Label(root, text="Um, it’s Order 166.", font=("Arial", 40), bg="tan")
             root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
-            root.button1 = tk.Button(root, text="Leave", command=lambda: dialog(36,persontalking,currentscene))
+            root.button1 = tk.Button(root, text="Leave", command=lambda: dialog(0,persontalking,currentscene))
             root.button1.place(relx=.5, rely=0.65, anchor="n")
         if Interaction_Num == 0:
             scene(currentscene[0],currentscene[1])
@@ -564,13 +568,9 @@ def game(Scene_Value):
                         treat_trios()
 
                         itemframe_Deletion("CandyTicket",root.CandyTicket)
-                        root.item = tk.Button(root, image=candy_arcade, command=lambda: item("candy_arcade"))
-                        root.item.place(relx=.75, rely=0.2,anchor="n")
                         root.Temporary_Items.append(["CandyPin",candypin])
                     except:
                         itemframe_Deletion("CandyTicket",root.CandyTicket)
-                        root.item = tk.Button(root, image=candy_arcade, command=lambda: item("candy_arcade"))
-                        root.item.place(relx=.75, rely=0.2,anchor="n")
                         root.Temporary_Items.append(["CandyPin",candypin])
                     itemframe_Deletion("CandyTicket",root.CandyTicket)
                     root.item = tk.Button(root, image=candy_arcade, command=lambda: item("candy_arcade"))
