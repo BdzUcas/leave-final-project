@@ -105,20 +105,14 @@ def rock_paper_scissors():
         computer_choice = r.randint(1,3)
 
 
-        if choice - 1 == computer_choice:
-            win_message = f'Your {choices[choice]}{actions[choice]}their {choices[computer_choice]}!'
-            score += 1
-        elif computer_choice - 1 == choice:
-            win_message = f'Their {choices[computer_choice]}{actions[computer_choice]}your {choices[choice]}!'
-            bot_score += 1
-        elif computer_choice == 1 and choice == 3:
-            win_message = f'Their {choices[computer_choice]}{actions[computer_choice]}your {choices[choice]}!'
-            bot_score += 1
-        elif choice == 1 and computer_choice == 3:
-            win_message = f'Your {choices[choice]}{actions[choice]}their {choices[computer_choice]}!'
-            score += 1
-        elif choice == computer_choice:
+        if choice == computer_choice:
             win_message = 'It\'s a tie!'
+        elif (choice == 1 and computer_choice == 3) or (choice == 2 and computer_choice == 1) or (choice == 3 and computer_choice == 2):
+            win_message = f'Your {choices[choice]}{actions[choice]}their {choices[computer_choice]}!'
+            score += 1
+        elif:
+            win_message = f'Their {choices[computer_choice]}{actions[computer_choice]}your {choices[choice]}!'
+            bot_score += 1
         else:
             win_message = 'The game bugged out. What kind of arcade is this?'
         winner = score == 3

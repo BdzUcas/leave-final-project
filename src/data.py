@@ -141,7 +141,7 @@ def undictify(items):
                         setattr(itemobj,key,value)
                     item = itemobj
                 except KeyError:
-                    print(f'The class {item["classtype"]} is not imported into helper.py! Import it at the top of helper.py to make loading work properly!')
+                    print(f"The class {item['classtype']} is not imported into helper.py! Import it at the top of helper.py to make loading work properly!")
                 except Exception as e:
                     print(f'Unknown error when loading object! {e}')
             #replace the dictionary in the parent dictionary/list with th new object
@@ -171,7 +171,7 @@ def undictify(items):
                         setattr(itemobj,key,value)
                     item = itemobj
                 except KeyError:
-                    print(f'The class {item['classtype']} is not imported into helper.py! Import it at the top of helper.py to make loading work properly!')
+                    print(f"The class {item['classtype']} is not imported into helper.py! Import it at the top of helper.py to make loading work properly!")
                 except Exception as e:
                     print(f'Unknown error when loading object! {e}')
             #replace the dictionary in the parent dictionary/list with th new object
