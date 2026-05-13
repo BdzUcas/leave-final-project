@@ -657,4 +657,5 @@ def game():
     scene(elevatorhall,1)
     root.mainloop()
 
-game()
+if __name__ == '__main__':
+    game()
