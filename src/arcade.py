@@ -68,6 +68,3 @@ def arcade(rps_beaten,block_break_beaten,matching_beaten):
                     matching_beaten = True
             case 'exit':
                 return rps_beaten, block_break_beaten, matching_beaten
-            
-
-arcade(False,False,False)
