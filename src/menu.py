@@ -1,7 +1,7 @@
 from data import *
 from gui import gui,gui_input
 from MainGameGui import *
-            
+#####RUN MAIN.PY#####
 def choose_save_file(user_data):
     try:
         user_data['save_files']
@@ -13,7 +13,6 @@ def choose_save_file(user_data):
         save_file = gui_input('Name your save file:')
         user_data['save_files'][save_file] = {}
     return user_data['save_files'][save_file]
-
 def run_game(username,user_data):
     
     data = choose_save_file(user_data)
@@ -24,7 +23,7 @@ def run_game(username,user_data):
     else:
         game(data)
     json_dump(f'docs/{username}.json',user_data)
-    launch_game()
+    #launch_game()
 def main():
     def get_users():
         users = csv_to_dictionary('docs/users.csv')
@@ -74,5 +73,3 @@ def main():
                 run_game(username,user_data)
             case 'Quit':
                 return
-
-main()
