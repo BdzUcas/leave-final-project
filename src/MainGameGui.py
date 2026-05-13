@@ -1,3 +1,4 @@
+import os
 import tkinter as tk
 from PIL import Image, ImageTk
 from treat_trios import treat_trios
@@ -14,112 +15,47 @@ def game(Scene_Value):
     h = root.winfo_screenheight()
     root.geometry(f"{w}x{h}")
 
+    images_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "Images"))
+    def load_img(filename):
+        return ImageTk.PhotoImage(Image.open(os.path.join(images_dir, filename)))
+
     #Images
 
-    itemframe = Image.open("Images/ItemFrame.png.png")
-    itemframe = ImageTk.PhotoImage(itemframe)
-
-    Selitemframe = Image.open("Images/SlectedItemFrame.png.png")
-    Selitemframe = ImageTk.PhotoImage(Selitemframe)
-
-    elevatorhall = Image.open("Images/ElevatorHallOutOfOrder.png")
-    elevatorhall = ImageTk.PhotoImage(elevatorhall)
-
-    main10 = Image.open("Images/Mainfloor10.png.png")
-    main10 = ImageTk.PhotoImage(main10)
-
-    garden = Image.open("Images/Floating_Garden.png.png")
-    garden = ImageTk.PhotoImage(garden)
-
-    oj = Image.open("Images/OJ Carton.png.png")
-    oj = ImageTk.PhotoImage(oj)
-
-    dolla2 = Image.open("Images/2_Dolla.png.png")
-    dolla2 = ImageTk.PhotoImage(dolla2)
-
-    dolla10 = Image.open("Images/10dolla.png.png")
-    dolla10 = ImageTk.PhotoImage(dolla10)
-
-    kidsection = Image.open("Images/ActualyJustAGarbageTrashScene.png.png")
-    kidsection = ImageTk.PhotoImage(kidsection)
-
-    arcade = Image.open("Images/Arcaderoom.png.png")
-    arcade = ImageTk.PhotoImage(arcade)
-
-    boost = Image.open("Images/BorangeBoost.png.png")
-    boost = ImageTk.PhotoImage(boost)
-
-    infodesk = Image.open("Images/HelpDesk.png.png")
-    infodesk = ImageTk.PhotoImage(infodesk)
-
-    candystore = Image.open("Images/NewKandyStore.png.png")
-    candystore = ImageTk.PhotoImage(candystore)
-
-    toystore = Image.open("Images/Toy store.png.png")
-    toystore = ImageTk.PhotoImage(toystore)
-
-    downarrow = Image.open("Images/DownArrow.png.png")
-    downarrow = ImageTk.PhotoImage(downarrow)
-
-    uparrow = Image.open("Images/UpArrow.png.png")
-    uparrow = ImageTk.PhotoImage(uparrow)
-
-    rightarrow = Image.open("Images/RightArrow.png.png")
-    rightarrow = ImageTk.PhotoImage(rightarrow)
-
-    leftarrow = Image.open("Images/LeftArrow.png.png")
-    leftarrow = ImageTk.PhotoImage(leftarrow)
-
-    bobbypin = Image.open("Images/Bobbypin.png.png")
-    bobbypin = ImageTk.PhotoImage(bobbypin)
-
-    dialoguebox = Image.open("Images/Dialog box.png.png")
-    dialoguebox = ImageTk.PhotoImage(dialoguebox)
-
-    dialouginteraction = Image.open("Images/Dialog.png.png")
-    dialouginteraction = ImageTk.PhotoImage(dialouginteraction)
-
-    stairs = Image.open("Images/Stairs.png.png")
-    stairs = ImageTk.PhotoImage(stairs)
-
-    candy_arcade = Image.open("Images/Candy arcade.png.png")
-    candy_arcade = ImageTk.PhotoImage(candy_arcade)
-
-    toycarsimage = Image.open("Images/Box o cars.png.png")
-    toycarsimage = ImageTk.PhotoImage(toycarsimage)
-
-    candyticket = Image.open("Images/Candy ticket.png.png")
-    candyticket = ImageTk.PhotoImage(candyticket)
-
-    candypin = Image.open("Images/Kandy_Pin.png.png")
-    candypin = ImageTk.PhotoImage(candypin)
-
-    brokenpin = Image.open("Images/BrokenBobbyPin.png.png")
-    brokenpin = ImageTk.PhotoImage(brokenpin)
-
-    snobbypin = Image.open("Images/Bobbypin.png.png")
-    snobbypin = ImageTk.PhotoImage(snobbypin)
-
-    arcadescene = Image.open("Images/Arcaderoom.png.png")
-    arcadescene = ImageTk.PhotoImage(arcadescene)
-
-    arcade_RPS =  Image.open("Images/arcade Machination(RPS).png")
-    arcade_RPS = ImageTk.PhotoImage(arcade_RPS)
-
-    arcade_brick =  Image.open("Images/arcade Machination(Brick).png")
-    arcade_brick = ImageTk.PhotoImage(arcade_brick)
-
-    arcade_card =  Image.open("Images/arcade Machination(Card).png")
-    arcade_card = ImageTk.PhotoImage(arcade_card)
-
-    food_court = Image.open("Images/Food court.png.png")
-    food_court = ImageTk.PhotoImage(food_court)
-
-    Boorage_boost = Image.open("Images/BorangeBoost.png.png")
-    Boorage_boost = ImageTk.PhotoImage(Boorage_boost)
-
-    fish_Station = Image.open("Images/FishStore.png.png")
-    fish_Station = ImageTk.PhotoImage(fish_Station)
+    itemframe = load_img("ItemFrame.png.png")
+    Selitemframe = load_img("SlectedItemFrame.png.png")
+    elevatorhall = load_img("ElevatorHall.png.png")
+    main10 = load_img("Mainfloor10.png.png")
+    garden = load_img("Floating_Garden.png.png")
+    oj = load_img("OJ Carton.png.png")
+    dolla2 = load_img("2_Dolla.png.png")
+    dolla10 = load_img("10dolla.png.png")
+    kidsection = load_img("ActualyJustAGarbageTrashScene.png.png")
+    arcade = load_img("Arcaderoom.png.png")
+    boost = load_img("BorangeBoost.png.png")
+    infodesk = load_img("HelpDesk.png.png")
+    candystore = load_img("NewKandyStore.png.png")
+    toystore = load_img("Toy store.png.png")
+    downarrow = load_img("DownArrow.png.png")
+    uparrow = load_img("UpArrow.png.png")
+    rightarrow = load_img("RightArrow.png.png")
+    leftarrow = load_img("LeftArrow.png.png")
+    bobbypin = load_img("Bobbypin.png.png")
+    dialoguebox = load_img("Dialog box.png.png")
+    dialouginteraction = load_img("Dialog.png.png")
+    stairs = load_img("Stairs.png.png")
+    candy_arcade = load_img("Candy arcade.png.png")
+    toycarsimage = load_img("Box o cars.png.png")
+    candyticket = load_img("Candy ticket.png.png")
+    candypin = load_img("Kandy_Pin.png.png")
+    brokenpin = load_img("BrokenBobbyPin.png.png")
+    snobbypin = load_img("Bobbypin.png.png")
+    arcadescene = load_img("Arcaderoom.png.png")
+    arcade_RPS = load_img("arcade Machination(RPS).png")
+    arcade_brick = load_img("arcade Machination(Brick).png")
+    arcade_card = load_img("arcade Machination(Card).png")
+    food_court = load_img("Food court.png.png")
+    Boorage_boost = load_img("BorangeBoost.png.png")
+    fish_Station = load_img("FishStore.png.png")
 
 
 
@@ -493,12 +429,17 @@ def game(Scene_Value):
             root.button1.place(relx=.5, rely=0.65, anchor="n")
         if Interaction_Num == 0:
             scene(currentscene[0],currentscene[1])
-    def itemframe_Deletion(Item_type,Item_Name):
-        for x in root.Temporary_Items:
+    def itemframe_Deletion(Item_type,Item_Name=None):
+        for x in list(root.Temporary_Items):
             if x[0] == Item_type:
-                root.Temporary_Items.pop(root.Temporary_Items.index(x))
-                Item_Name.place_forget()
-                
+                root.Temporary_Items.remove(x)
+                if Item_Name is not None:
+                    try:
+                        Item_Name.place_forget()
+                    except Exception:
+                        pass
+                break
+
     def item_selection(item_Type,Item_Name):
         #if item_Type == "None":
             #root.Item_Selected = item_Type
@@ -517,29 +458,46 @@ def game(Scene_Value):
         root.passed_Sleceted_item = item_Type
 
     def Inventoryframes(Inventory):
-        #root.empty = tk.Button(root,image=itemframe, command=lambda:item_selection("None",root.empty))
-        #root.empty.place(relx=0.1, rely=0.85,anchor="n")
+        for widget in getattr(root, "inventory_widgets", []):
+            try:
+                widget.place_forget()
+                widget.destroy()
+            except Exception:
+                pass
+        root.inventory_widgets = []
         root.InventoryCount = 0
         for x in Inventory:
             root.InventoryCount += 0.1
             if x[0] == "Bobbypin":
-                root.Testitem = tk.Button(root,image=x[1],command=lambda:item_selection(x[0],root.Testitem))
-                root.Testitem.place(relx=root.InventoryCount, rely=0.8,anchor="n")
+                button = tk.Button(root, image=x[1], command=lambda item_type=x[0], btn=button: item_selection(item_type, btn))
+                button.place(relx=root.InventoryCount, rely=0.8, anchor="n")
+                root.Testitem = button
+                root.inventory_widgets.append(button)
             if x[0] == "sbobbypinlabel":
-                root.sbobbypinlabel = tk.Button(root,image=x[1],command=lambda:item_selection(x[0],root.Testitem))
-                root.sbobbypinlabel.place(relx=root.InventoryCount, rely=0.8,anchor="n")
+                button = tk.Button(root, image=x[1], command=lambda item_type=x[0], btn=button: item_selection(item_type, btn))
+                button.place(relx=root.InventoryCount, rely=0.8, anchor="n")
+                root.sbobbypinlabel = button
+                root.inventory_widgets.append(button)
             if x[0] == "Brokenbooby":
-                root.Testitem = tk.Button(root,image=x[1],command=lambda:item_selection(x[0],root.Testitem))
-                root.Testitem.place(relx=root.InventoryCount, rely=0.8,anchor="n")
+                button = tk.Button(root, image=x[1], command=lambda item_type=x[0], btn=button: item_selection(item_type, btn))
+                button.place(relx=root.InventoryCount, rely=0.8, anchor="n")
+                root.Testitem = button
+                root.inventory_widgets.append(button)
             if x[0] == "Toycars":
-                root.Toycars = tk.Button(root,image=x[1],command=lambda:item_selection(x[0],root.Testitem))
-                root.Toycars.place(relx=root.InventoryCount, rely=0.8,anchor="n")
+                button = tk.Button(root, image=x[1], command=lambda item_type=x[0], btn=button: item_selection(item_type, btn))
+                button.place(relx=root.InventoryCount, rely=0.8, anchor="n")
+                root.Toycars = button
+                root.inventory_widgets.append(button)
             if x[0] == "CandyTicket":
-                root.CandyTicket = tk.Button(root,image=x[1],command=lambda:item_selection(x[0],root.Testitem))
-                root.CandyTicket.place(relx=root.InventoryCount, rely=0.8,anchor="n")
+                button = tk.Button(root, image=x[1], command=lambda item_type=x[0], btn=button: item_selection(item_type, btn))
+                button.place(relx=root.InventoryCount, rely=0.8, anchor="n")
+                root.CandyTicket = button
+                root.inventory_widgets.append(button)
             if x[0] == "CandyPin":
-                root.CandyPin = tk.Button(root,image=x[1],command=lambda:item_selection(x[0],root.Testitem))
-                root.CandyPin.place(relx=root.InventoryCount, rely=0.8,anchor="n")
+                button = tk.Button(root, image=x[1], command=lambda item_type=x[0], btn=button: item_selection(item_type, btn))
+                button.place(relx=root.InventoryCount, rely=0.8, anchor="n")
+                root.CandyPin = button
+                root.inventory_widgets.append(button)
     def item(ItemName):
         if ItemName == "Bobbypin":
             root.boobypinbool = True
@@ -756,4 +714,5 @@ def game(Scene_Value):
 
 
 
-game(1)
+if __name__ == "__main__":
+    game(1)

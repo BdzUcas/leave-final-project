@@ -1,14 +1,16 @@
+import os
 import tkinter as tk
 from gui import *
 from rock_paper_scissors import *
 from arcade_games import block_break, match_cards
 def arcade(rps_beaten,block_break_beaten,matching_beaten):
+    images_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "Images"))
     while True:
         root = tk.Tk()
         root.geometry("1200x1100")
         root.resizable(False,False)
         root.title('Arcade')
-        arcade_game_image = tk.PhotoImage(master=root,file="Images/arcade_game.png")
+        arcade_game_image = tk.PhotoImage(master=root, file=os.path.join(images_dir, "arcade_game.png"))
         arcade_game = tk.Label(root,image=arcade_game_image)
         arcade_game.pack()
         
@@ -17,26 +19,26 @@ def arcade(rps_beaten,block_break_beaten,matching_beaten):
         title.place(relx=0.5,rely=0.2,anchor=tk.CENTER)
         result = Result()
 
-        rps_img = tk.PhotoImage(master=root,file="Images/rock.png")
+        rps_img = tk.PhotoImage(master=root, file=os.path.join(images_dir, "rock.png"))
         rps = image_button(root,"rock paper scissors",rps_img,result)
         rps.pack()
         rps.place(relx=0.25,rely=0.455,anchor=tk.CENTER)
 
-        block_breaker_img = tk.PhotoImage(master=root,file="Images/block_break.png")
+        block_breaker_img = tk.PhotoImage(master=root, file=os.path.join(images_dir, "block_break.png"))
         block_breaker = image_button(root,'block breaker',block_breaker_img,result)
         block_breaker.pack()
         block_breaker.place(relx=0.5,rely=0.455,anchor=tk.CENTER)
 
-        matching_img = tk.PhotoImage(master=root,file="Images/matching_card.png")
+        matching_img = tk.PhotoImage(master=root, file=os.path.join(images_dir, "matching_card.png"))
         matching = image_button(root,'matching',matching_img,result)
         matching.pack()
         matching.place(relx=0.75,rely=0.455,anchor=tk.CENTER)
 
-        exit_img = tk.PhotoImage(master=root,file="Images/exit.png")
-        exit = image_button(root,'exit',exit_img,result)
-        exit.pack()
-        exit.place(relx=0.5,rely=0.705,anchor=tk.CENTER)
-        ticket_img = tk.PhotoImage(master=root,file="Images/ticket.png")
+        exit_img = tk.PhotoImage(master=root, file=os.path.join(images_dir, "exit.png"))
+        exit_button = image_button(root, 'exit', exit_img, result)
+        exit_button.pack()
+        exit_button.place(relx=0.5,rely=0.705,anchor=tk.CENTER)
+        ticket_img = tk.PhotoImage(master=root, file=os.path.join(images_dir, "ticket.png"))
         rps_ticket = Label(root,image=ticket_img,background="#ed1c24")
         block_break_ticket = Label(root,image=ticket_img,background="#ed1c24")
         matching_ticket = Label(root,image=ticket_img,background="#ed1c24")
@@ -50,8 +52,6 @@ def arcade(rps_beaten,block_break_beaten,matching_beaten):
             matching_ticket.pack()
             matching_ticket.place(relx=0.9,rely=0.95,anchor=tk.CENTER)
         root.mainloop()
-
-        
 
         match result.result:
             case 'rock paper scissors':
