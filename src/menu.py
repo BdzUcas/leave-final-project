@@ -1,5 +1,6 @@
 from data import *
 from gui import gui,gui_input
+from MainGameGui import *
             
 def choose_save_file(user_data):
     try:
@@ -14,8 +15,14 @@ def choose_save_file(user_data):
     return user_data['save_files'][save_file]
 
 def run_game(username,user_data):
+    
     data = choose_save_file(user_data)
+    print(data)
+    if not data:
     #MAIN GAME FUNCTION GOES HERE
+        game(1)
+    else:
+        game(data)
     json_dump(f'docs/{username}.json',user_data)
 def main():
     def get_users():
