@@ -24,6 +24,7 @@ def run_game(username,user_data):
     else:
         game(data)
     json_dump(f'docs/{username}.json',user_data)
+    launch_game()
 def main():
     def get_users():
         users = csv_to_dictionary('docs/users.csv')

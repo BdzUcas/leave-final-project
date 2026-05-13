@@ -32,7 +32,7 @@ def treat_trios():
                 title = font.render("Treat Trios!", True, (0, 0, 0))
                 screen.blit(title, (150, 30))
                 desc1 = font.render("Swap treats to get three or more in a row.", True, (0, 0, 0))
-                desc2 = font.render("Reach 15 points to get a ticket!", True, (0,0,0))
+                desc2 = font.render("Reach 15 points to get a pin!", True, (0,0,0))
                 desc1_rect = desc1.get_rect(center=(200, 100))
                 desc2_rect = desc2.get_rect(center=(200, 130))
                 screen.blit(desc1, desc1_rect)
@@ -45,11 +45,12 @@ def treat_trios():
                         return None
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         if start_btn.is_clicked(event.pos):
-                            run_game()
-                            return None
+                            won = run_game()
+                            pygame.quit()
+                            return won
                         if quit_btn.is_clicked(event.pos):
                             pygame.quit()
-                            return None
+                            return False
         def handle_click(grid, row, col, selected_candy):
             if selected_candy is None:
                 selected_candy = (row, col)
@@ -117,14 +118,14 @@ def treat_trios():
                     fill_empty_spaces(grid)
                     if points >= 15:
                         message1 = win_font.render("You Won!", True, (255, 0, 0))
-                        message2 = font.render("Congratulations on receiving a ticket!", True, (255, 0, 0))
+                        message2 = font.render("Congratulations on receiving a pin!", True, (255, 0, 0))
                         message1_rect = message1.get_rect(center=(screen.get_width() // 2, screen.get_height() // 2 - 20))
                         message2_rect = message2.get_rect(center=(screen.get_width() // 2, screen.get_height() // 2 + 20))
                         screen.blit(message1, message1_rect)
                         screen.blit(message2, message2_rect)
                         pygame.display.flip()
                         pygame.time.delay(2000)
-                        return
+                        return True
                 for row in range(GRID_SIZE):
                     for col in range(GRID_SIZE):
                         candy_type = grid[row][col]
@@ -140,6 +141,5 @@ def treat_trios():
                         if selected_candy == (row, col):
                             pygame.draw.rect(screen, (0, 0, 0), (col * CELL_SIZE, row * CELL_SIZE, CELL_SIZE, CELL_SIZE), 3)
                 pygame.display.flip()
-        show_launcher()
-        break
-treat_trios()
+        result = show_launcher()
+        return result

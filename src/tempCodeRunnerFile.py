@@ -1,6 +1,0 @@
-                        message1 = win_font.render("You Won!", True, (255, 0, 0))
-                        message2 = font.render("Congratulations on receiving a ticket!", True, (255, 0, 0))
-                        message1_rect = message1.get_rect(center=(screen.get_width() // 2, screen.get_height() // 2 - 20))
-                        message2_rect = message2.get_rect(center=(screen.get_width() // 2, screen.get_height() // 2 + 20))
-                        screen.blit(message1, message1_rect)
-                        screen.blit(message2, message2_rect)
