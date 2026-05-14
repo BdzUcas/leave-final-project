@@ -165,6 +165,7 @@ def game(Scene_Value):
     root.rps_won = False
     root.breaker_won = False
     root.match_won = False
+    root.elevator_unlocked = False
 
     #The main part
     #itemframe_btn = tk.Button(root, image=itemframe)
@@ -473,13 +474,14 @@ def game(Scene_Value):
                 root.button1 = tk.Button(root, text="Are you waiting for something?", command=lambda: dialog(32,persontalking,currentscene))
                 root.button1.place(relx=.5, rely=0.65, anchor="n")
             else:
-                root.Dialogue = tk.Label(root, text="Oh…thanks.\n“Here’s the $10 as promised.", font=("Arial", 40), bg="tan")
+                root.Dialogue = tk.Label(root, text="Oh…thanks.\nHere's the $10 as promised.", font=("Arial", 40), bg="tan")
                 root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
                 root.currency += 10
-                root.nextbutton = tk.Button(root, text="You also told me where the elevators are.", command=lambda: dialog(40,persontalking,currentscene))
+                root.elevator_unlocked = True
+                root.nextbutton = tk.Button(root, text="You said you would show me the way to the elevators too.", command=lambda: dialog(40,persontalking,currentscene))
                 root.nextbutton.place(relx=.5, rely=0.75, anchor="n")
         if Interaction_Num == 32:
-            root.Dialogue = tk.Label(root, text="I have to go get my food from Fresh Filet \n but I don’t feel like it.", font=("Arial", 40), bg="tan")
+            root.Dialogue = tk.Label(root, text="I have to go get my food from Fresh Filet \n but I don't feel like it.", font=("Arial", 40), bg="tan")
             root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
             root.nextbutton = tk.Button(root, text="I can help.", command=lambda: dialog(34,persontalking,currentscene))
             root.nextbutton.place(relx=.65, rely=0.65, anchor="n")
@@ -655,6 +657,8 @@ def game(Scene_Value):
         if SceneData == 1:
             root.FrsButton = tk.Button(root, image=uparrow, command=lambda:scene(main10,2))
             root.FrsButton.place(relx=.61, rely=0.5,anchor="n")
+            if root.elevator_unlocked:
+                pass
         if SceneData == 2:
             root.FrsButton = tk.Button(root, image=downarrow, command=lambda:scene(elevatorhall,1))
             root.FrsButton.place(relx=.5, rely=0.65,anchor="n")
