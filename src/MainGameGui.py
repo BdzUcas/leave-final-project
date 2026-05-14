@@ -3,7 +3,6 @@ from PIL import Image, ImageTk
 from treat_trios import treat_trios
 from arcade import arcade as run_arcade
 from data import undictify, dictify
-
 #This is a list of all the attributes of root that should be saved. For example: 'dollars2bool'
 export_fields = ['currency','Temporary_Items','Item_Selected','testItemBool','boobypinbool','dollars2bool','stairsavailible','orderrecipt','orderdone','CanFloor9','canel','rps_won','breaker_won','match_won','passed_Sleceted_item','arcade_death','scenenumber']
 item_images = {'Brokenbooby':'Images/BrokenBobbyPin.png.png','Toycars':'Images/Box o cars.png.png','CandyTicket':'Images/Candy ticket.png.png','sbobbypinlabel':'Images/Bobbypin.png.png','Bobbypin':'Images/Bobbypin.png.png','candypin':'Kandy_Pin.png.png','bunny':'Images/Rabbit_Plush.png.png'}
@@ -559,8 +558,8 @@ def game(Scene_Value,data={}):
             root.button1 = tk.Button(root, text="Thank you", command=lambda: dialog(41,persontalking,currentscene))
             root.button1.place(relx=.5, rely=0.65, anchor="n")
         if Interaction_Num == 41:
-            currency += 10
-            itemframe_Deletion("fish_order",root.fish)
+            root.currency += 10
+            itemframe_Deletion("Fish_order",root.fish)
             root.CanFloor9 = True
             dialog(0,persontalking,currentscene)
         if Interaction_Num == 42:
@@ -968,7 +967,9 @@ def game(Scene_Value,data={}):
         if SceneData == 17:
             root.Dailog = tk.Button(root, image=dialouginteraction, command=lambda: item("Aguy"))
             root.Dailog.place(relx=.55, rely=0.1,anchor="n")
-        
+        if SceneData == 18:
+            root.item = tk.Button(root, text="You escaped now press this to leave", command=lambda:root.destroy())
+            root.item.place(relx=.5, rely=0.5,anchor="n")
             
     def scene(background,SceneData):
         root.scenenumber = SceneData
