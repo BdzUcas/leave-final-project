@@ -821,11 +821,11 @@ def game(Scene_Value):
             root.secButton.place(relx=.5, rely=0.65,anchor="n")
         if SceneData == 13:
             root.fourthbutton = tk.Button(root, image=uparrow, command=lambda:scene(arcadescene,16))
-            root.fourthbutton.place(relx=.65, rely=0.2,anchor="n")
+            root.fourthbutton.place(relx=.68, rely=0.46,anchor="n")
             root.secButton = tk.Button(root, image=uparrow, command=lambda:scene(infodesk,14))
-            root.secButton.place(relx=.35, rely=0.2,anchor="n")
-            root.FrsButton = tk.Button(root, image=leftarrow, command=lambda:scene(food_court,10))
-            root.FrsButton.place(relx=.15, rely=0.5,anchor="n")
+            root.secButton.place(relx=.115, rely=0.46,anchor="n")
+            root.FrsButton = tk.Button(root, image=downarrow, command=lambda:scene(food_court,10))
+            root.FrsButton.place(relx=.5, rely=0.65,anchor="n")
         if SceneData == 14:
             root.secButton = tk.Button(root, image=downarrow, command=lambda:scene(floor9,13))
             root.secButton.place(relx=.5, rely=0.65,anchor="n")
@@ -923,7 +923,7 @@ def game(Scene_Value):
         SceneButtons(SceneData)
         SceneItems(SceneData)
 
-
+    
     #Test scene Data
     if Scene_Value == 1:
         scene(elevatorhall,Scene_Value)
