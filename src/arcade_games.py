@@ -15,6 +15,10 @@ bat pos [1] Top left coordinate y1
 bat pos [2] Bottom right coordinate x2
 bat pos [3] Bottom right coordinate y2"""
 
+#function for making a start menu
+def menu():
+    pass
+
 
 class Ball:
     def __init__(self, canvas, color, radius):
