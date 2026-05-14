@@ -1,4 +1,5 @@
 import csv, json, hashlib
+from tkinter import *
 #CSV to dictionary function
 def csv_to_dictionary(file_path):
     try:
@@ -187,7 +188,7 @@ def create_json(file_path):
         print('Directory does not exist!')
 
 #JSON reader function
-def json_pull(file_path):
+def json_pull(file_path,reconstruct_objects=True):
     #if file path does not exist
     try:
         with open(file_path,'r'):
@@ -200,7 +201,8 @@ def json_pull(file_path):
         #grab data as a dictionary
         data = json.load(file)
         #undictify it
-        data = undictify(data)
+        if reconstruct_objects:
+            data = undictify(data)
     #return data
     return data
 
