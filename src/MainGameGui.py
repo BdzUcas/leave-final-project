@@ -6,7 +6,7 @@ from data import undictify, dictify
 
 #This is a list of all the attributes of root that should be saved. For example: 'dollars2bool'
 export_fields = ['currency','Temporary_Items','Item_Selected','testItemBool','boobypinbool','dollars2bool','stairsavailible','orderrecipt','orderdone','CanFloor9','canel','rps_won','breaker_won','match_won','passed_Sleceted_item','arcade_death','scenenumber']
-item_images = {'Brokenbooby':'Images/BrokenBobbyPin.png.png','Toycars':'Images/Box o cars.png.png','CandyTicket':'Images/Candy ticket.png.png','sbobbypinlabel':'Images/Bobbypin.png.png','Bobbypin':'Images/Bobbypin.png.png','candypin':'Kandy_Pin.png.png','bunny':'Images/Rabbit_Plush.png.png'}
+item_images = {'Brokenbooby':'Images/BrokenBobbyPin.png.png','Toycars':'Images/Box o cars.png.png','CandyTicket':'Images/Candy ticket.png.png','sbobbypinlabel':'Images/Bobbypin.png.png','Bobbypin':'Images/Bobbypin.png.png','candypin':'Kandy_Pin.png.png','bunny':'Images/Rabbit_Plush.png.png','Fish_order':'Images/Fish_Order.png.png'}
 
 #Beginging scene is game(Elevatorhall,1)
 def game(Scene_Value,data={}):
@@ -559,7 +559,7 @@ def game(Scene_Value,data={}):
             root.button1 = tk.Button(root, text="Thank you", command=lambda: dialog(41,persontalking,currentscene))
             root.button1.place(relx=.5, rely=0.65, anchor="n")
         if Interaction_Num == 41:
-            currency += 10
+            root.currency += 10
             itemframe_Deletion("fish_order",root.fish)
             root.CanFloor9 = True
             dialog(0,persontalking,currentscene)
