@@ -548,6 +548,7 @@ def game(Scene_Value,data={}):
             root.button1.place(relx=.5, rely=0.65, anchor="n")
         if Interaction_Num == 39:
             root.orderdone = True
+            root.orderrecipt = False
             dialog(0,persontalking,currentscene)
             root.Temporary_Items.append(["Fish_order",fishorder])
             Inventoryframes(root.Temporary_Items)
