@@ -34,7 +34,14 @@ def game(Scene_Value,data={}):
     Selitemframe = ImageTk.PhotoImage(Selitemframe)
 
     elevatorhall = Image.open("Images/ElevatorHallOutOfOrder.png")
-    elevatorhall = ImageTk.PhotoImage(elevatorhall)
+    elevatorhallfixed = Image.open("Images/ElevatorHall.png.png")
+    #it is a root property so it can be changed inside a function (when the elevators are fixed)
+    if root.canel:
+        root.elevatorhall = ImageTk.PhotoImage(elevatorhallfixed)
+    else:
+        root.elevatorhall = ImageTk.PhotoImage(elevatorhall)
+
+    
 
     testscene= Image.open("Images/Test1background.png.png")
     testscene = ImageTk.PhotoImage(testscene)
@@ -628,6 +635,7 @@ def game(Scene_Value,data={}):
             root.Dialogue.place(relx=.5, rely=0.4, anchor="n")
             itemframe_Deletion("bunny",root.bunny)
             root.canel = True
+            root.elevatorhall = ImageTk.PhotoImage(elevatorhallfixed)
             root.nextbutton = tk.Button(root, text="You're welcome, I guess", command=lambda: dialog(0,persontalking,currentscene))
             root.nextbutton.place(relx=.5, rely=0.65, anchor="n")
             
@@ -762,8 +770,11 @@ def game(Scene_Value,data={}):
         if SceneData == 1:
             root.FrsButton = tk.Button(root, image=uparrow, command=lambda:scene(main10,2))
             root.FrsButton.place(relx=.61, rely=0.5,anchor="n")
+            if root.canel == True:
+                root.fourthbutton = tk.Button(root, image=uparrow, command=lambda:scene(exitdoor,18))
+                root.fourthbutton.place(relx=.32, rely=0.49,anchor="n")
         if SceneData == 2:
-            root.FrsButton = tk.Button(root, image=downarrow, command=lambda:scene(elevatorhall,1))
+            root.FrsButton = tk.Button(root, image=downarrow, command=lambda:scene(root.elevatorhall,1))
             root.FrsButton.place(relx=.5, rely=0.65,anchor="n")
 
             root.secButton = tk.Button(root, image=rightarrow, command=lambda:scene(garden,3))
@@ -777,6 +788,7 @@ def game(Scene_Value,data={}):
 
             root.fithbutton = tk.Button(root, image=uparrow, command=lambda:scene(infodesk,6))
             root.fithbutton.place(relx=.25, rely=0.45,anchor="n")
+            
         if SceneData == 3:
             root.secButton = tk.Button(root, image=leftarrow, command=lambda:scene(main10,2))
             root.secButton.place(relx=.05, rely=0.5,anchor="n")
@@ -836,14 +848,14 @@ def game(Scene_Value,data={}):
         if SceneData == 14:
             root.secButton = tk.Button(root, image=downarrow, command=lambda:scene(floor9,13))
             root.secButton.place(relx=.5, rely=0.65,anchor="n")
-            root.fourthbutton = tk.Button(root, image=uparrow, command=lambda:scene(elevatorhall,15))
+            root.fourthbutton = tk.Button(root, image=uparrow, command=lambda:scene(root.elevatorhall,15))
             root.fourthbutton.place(relx=.65, rely=0.2,anchor="n")
         if SceneData == 15:
             root.secButton = tk.Button(root, image=downarrow, command=lambda:scene(infodesk,14))
             root.secButton.place(relx=.5, rely=0.65,anchor="n")
             if root.canel == True:
                 root.fourthbutton = tk.Button(root, image=uparrow, command=lambda:scene(exitdoor,18))
-                root.fourthbutton.place(relx=.35, rely=0.2,anchor="n")
+                root.fourthbutton.place(relx=.32, rely=0.49,anchor="n")
         if SceneData == 16:
             root.secButton = tk.Button(root, image=downarrow, command=lambda:scene(floor9,13))
             root.secButton.place(relx=.5, rely=0.65,anchor="n")
@@ -937,7 +949,7 @@ def game(Scene_Value,data={}):
     Inventoryframes(root.Temporary_Items)
     
     scene_images = {
-        1: elevatorhall,
+        1: root.elevatorhall,
         2: main10,
         3: garden,
         4: kidsection,
@@ -951,7 +963,7 @@ def game(Scene_Value,data={}):
         12: Boorage_boost,
         13: floor9,
         14: infodesk,
-        15: elevatorhall,
+        15: root.elevatorhall,
         16: arcade,
         17: arcadestaff,
         18: exitdoor
