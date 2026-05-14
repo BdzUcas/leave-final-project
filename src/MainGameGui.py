@@ -548,7 +548,6 @@ def game(Scene_Value,data={}):
             root.button1 = tk.Button(root, text="Thank you", command=lambda: dialog(39,persontalking,currentscene))
             root.button1.place(relx=.5, rely=0.65, anchor="n")
         if Interaction_Num == 39:
-            .
             root.orderdone = True
             dialog(0,persontalking,currentscene)
             root.Temporary_Items.append(["Fish_order",fishorder])
