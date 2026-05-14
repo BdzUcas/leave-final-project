@@ -191,21 +191,6 @@ def game(Scene_Value,data={}):
     root.passed_Sleceted_item = "Empty"
     
 
-    #Diffrent items
-    root.Item_Selected = "None"
-    root.testItemBool = 0
-    root.boobypinbool = False
-    root.dollars2bool = False
-    root.stairsavailible = False
-    root.orderrecipt = False
-    root.orderdone = False
-    root.CanFloor9 = False
-    root.canel = False
-    root.rps_won = False
-    root.breaker_won = False
-    root.match_won = False
-    root.elevator_unlocked = False
-    root.entered_candy_from_stairs = False
 
     #The main part
     #itemframe_btn = tk.Button(root, image=itemframe)
@@ -752,12 +737,10 @@ def game(Scene_Value,data={}):
             #Hey I Do Not know what we are really doing for the item logic so just replace this with the function for item storage
             root.Temporary_Items.append(["Bobbypin",bobbypin])
             Inventoryframes(root.Temporary_Items)
-        if ItemName == "RPS":
-            root.rps_won,root.breaker_won,root.match_won = run_arcade(root, root.rps_won,root.breaker_won,root.match_won)
-        if ItemName == "Brick":
-            root.rps_won,root.breaker_won,root.match_won = run_arcade(root, root.rps_won,root.breaker_won,root.match_won)
-        if ItemName == "Match":
-            root.rps_won,root.breaker_won,root.match_won = run_arcade(root, root.rps_won,root.breaker_won,root.match_won)
+        elif ItemName == "RPS" or ItemName == "Brick" or ItemName == "Match":
+            root.arcade_death = True
+            root.destroy()
+            root.rps_won,root.breaker_won,root.match_won = run_arcade(root.rps_won,root.breaker_won,root.match_won)
         if ItemName == "2dollars":
             root.dollars2bool = True
             root.item.place_forget()

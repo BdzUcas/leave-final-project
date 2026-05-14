@@ -12,13 +12,8 @@ def image_button(root: tk.Tk, return_val: str, image: tk.PhotoImage, result: Res
     button = tk.Button(root,image=image,command=lambda return_val=return_val: button_push(root,return_val,result))
     return button
 
-def choice_gui(parent=None):
-    if parent is None:
-        choice_gui = tk.Tk()
-    else:
-        choice_gui = tk.Toplevel(parent)
-        choice_gui.transient(parent)
-        choice_gui.grab_set()
+def choice_gui():
+    choice_gui = tk.Tk()
     choice_gui.geometry("1200x1100")
     choice_gui.resizable(False,False)
     choice_gui.title('Rock Paper Scissors')
@@ -45,24 +40,16 @@ def choice_gui(parent=None):
     scissors.pack()
     scissors.place(relx=0.75,rely=0.455,anchor=tk.CENTER)
 
-    if parent is None:
-        choice_gui.mainloop()
-    else:
-        choice_gui.wait_window()
+    choice_gui.mainloop()
     return result.result
 
-def win_gui(choice: int, computer_choice: int, win_message: str, winner = False, bot_winner = False, parent=None):
+def win_gui(choice: int, computer_choice: int, win_message: str, winner = False, bot_winner = False):
     if winner:
         win_message = win_message + '\nYou win!'
     if bot_winner:
         win_message = win_message + '\nThey win!'
 
-    if parent is None:
-        win_gui = tk.Tk()
-    else:
-        win_gui = tk.Toplevel(parent)
-        win_gui.transient(parent)
-        win_gui.grab_set()
+    win_gui = tk.Tk()
     win_gui.resizable(False,False)
     win_gui.title('Rock Paper Scissors')
     arcade_game_image = tk.PhotoImage(master=win_gui,file="Images/arcade_game.png")
@@ -99,12 +86,9 @@ def win_gui(choice: int, computer_choice: int, win_message: str, winner = False,
     next.pack()
     next.place(relx=0.5,rely=0.655,anchor=tk.CENTER)
 
-    if parent is None:
-        win_gui.mainloop()
-    else:
-        win_gui.wait_window()
+    win_gui.mainloop()
 
-def rock_paper_scissors(parent=None):
+def rock_paper_scissors():
     choices = ['There was an error!','rock','paper','scissors']
     choice_map = {'rock':1,'paper':2,'scissors':3}
     actions = ['There was an error!',' smashed ',' smothered ',' snipped ']
@@ -114,7 +98,7 @@ def rock_paper_scissors(parent=None):
     gui(['### ROCK PAPER SCISSORS ###','\n\n\n\n\n\n','Choose Rock, Paper, or Scissors each round to beat your opponent!','First to win 3 rounds wins!','\n\n','[LETS DO THIS!'],fontsize=15,width=1000,height=800)
     while True:
         try:
-            choice = choice_map[choice_gui(parent)]
+            choice = choice_map[choice_gui()]
         except:
             continue
 
