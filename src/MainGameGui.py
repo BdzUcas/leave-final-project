@@ -155,7 +155,7 @@ def game(Scene_Value,data={}):
     bunnyplush = Image.open("Images/Rabbit_Plush.png.png")
     bunnyplush = ImageTk.PhotoImage(bunnyplush)
 
-    exitdoor = Image.open("Images/Exitdoors.png.png")
+    exitdoor = Image.open("Images/updatedexitdoors.png")
     exitdoor = ImageTk.PhotoImage(exitdoor)
 
     arcadestaff = Image.open("Images/arcade staff.png")
