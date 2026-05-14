@@ -157,6 +157,9 @@ def game(Scene_Value,data={}):
     arcadestaff = Image.open("Images/arcade staff.png")
     arcadestaff = ImageTk.PhotoImage(arcadestaff)
 
+    fishorder = Image.open("Images/Fish_Order.png.png")
+    fishorder = ImageTk.PhotoImage(fishorder)
+
 
 
     """
@@ -541,14 +544,20 @@ def game(Scene_Value,data={}):
             root.button1 = tk.Button(root, text="Thank you", command=lambda: dialog(39,persontalking,currentscene))
             root.button1.place(relx=.5, rely=0.65, anchor="n")
         if Interaction_Num == 39:
+            .
             root.orderdone = True
             dialog(0,persontalking,currentscene)
+            root.Temporary_Items.append(["Fish_order",fishorder])
+            Inventoryframes(root.Temporary_Items)
+
         if Interaction_Num == 40:
             root.Dialogue = tk.Label(root, text="Right…ok. Go to the main area and face the info desk\n…the elevators should be on the right", font=("Arial", 40), bg="tan")
             root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
             root.button1 = tk.Button(root, text="Thank you", command=lambda: dialog(41,persontalking,currentscene))
             root.button1.place(relx=.5, rely=0.65, anchor="n")
         if Interaction_Num == 41:
+            currency += 10
+            itemframe_Deletion("fish_order",root.fish)
             root.CanFloor9 = True
             dialog(0,persontalking,currentscene)
         if Interaction_Num == 42:
@@ -691,6 +700,9 @@ def game(Scene_Value,data={}):
             if x[0] == "bunny":
                 root.bunny = tk.Button(root,image=x[1],command=lambda:item_selection(x[0],root.Testitem))
                 root.bunny.place(relx=root.InventoryCount, rely=0.8,anchor="n")
+            if x[0] == "Fish_order":
+                root.fish = tk.Button(root,image=x[1],command=lambda:item_selection(x[0],root.Testitem))
+                root.fish.place(relx=root.InventoryCount, rely=0.8,anchor="n")
     def item(ItemName):
         if ItemName == "Bobbypin":
             root.boobypinbool = True
