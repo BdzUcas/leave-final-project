@@ -146,7 +146,11 @@ def game(Scene_Value,data={}):
     fish_Station = ImageTk.PhotoImage(fish_Station)
 
     floor9 = Image.open("Images/main area of arcade floor.png")
-    floor9 = ImageTk.PhotoImage(floor9)
+    floor9canel = Image.open("Images/floor9_no_security.png")
+    if root.canel:
+        root.floor9 = ImageTk.PhotoImage(floor9canel)
+    else:
+        root.floor9 = ImageTk.PhotoImage(floor9)
 
     bunnyplush = Image.open("Images/Rabbit_Plush.png.png")
     bunnyplush = ImageTk.PhotoImage(bunnyplush)
@@ -634,11 +638,24 @@ def game(Scene_Value,data={}):
             root.Dialogue = tk.Label(root, text=f"Thank you!! I love it!", font=("Arial", 40), bg="tan")
             root.Dialogue.place(relx=.5, rely=0.4, anchor="n")
             itemframe_Deletion("bunny",root.bunny)
+            root.nextbutton = tk.Button(root, text="You're welcome, I guess", command=lambda: dialog(55,'Security',currentscene))
+            root.nextbutton.place(relx=.5, rely=0.65, anchor="n")
+
+        if Interaction_Num == 55:
+            root.Dialogue = tk.Label(root, text=f"That'll keep her busy.\nI can go supervise the elevator fixing now.", font=("Arial", 40), bg="tan")
+            root.Dialogue.place(relx=.5, rely=0.4, anchor="n")
             root.canel = True
             root.elevatorhall = ImageTk.PhotoImage(elevatorhallfixed)
-            root.nextbutton = tk.Button(root, text="You're welcome, I guess", command=lambda: dialog(0,persontalking,currentscene))
+            root.floor9 = ImageTk.PhotoImage(floor9canel)
+            root.nextbutton = tk.Button(root, text="Oh good.", command=lambda: dialog(0,"Sad girl",[root.floor9,13]))
             root.nextbutton.place(relx=.5, rely=0.65, anchor="n")
             
+        if Interaction_Num == 56:
+            root.Dialogue = tk.Label(root, text=f"It's so cute! Thank you!", font=("Arial", 40), bg="tan")
+            root.Dialogue.place(relx=.5, rely=0.4, anchor="n")
+            root.nextbutton = tk.Button(root, text="I'm glad you like it!", command=lambda: dialog(0,persontalking,currentscene))
+            root.nextbutton.place(relx=.5, rely=0.65, anchor="n")
+
         if Interaction_Num == 0:
             scene(currentscene[0],currentscene[1])
     def itemframe_Deletion(Item_type,Item_Name):
@@ -739,9 +756,11 @@ def game(Scene_Value,data={}):
         elif ItemName == "fish":
             dialog(37,"Fish store worker",[fish_Station,11])
         elif ItemName == "Security":
-            dialog(42,"Security",[floor9,13])
+            dialog(42,"Security",[root.floor9,13])
         elif ItemName == "Sad":
-            dialog(47,"Sad girl",[floor9,13])
+            dialog(47,"Sad girl",[root.floor9,13])
+        elif ItemName == "Happy":
+            dialog(56,"Happy girl",[root.floor9,13])
         elif ItemName == "Aguy":
             dialog(51,"Arcade worker",[arcadestaff,17])
 
@@ -830,7 +849,7 @@ def game(Scene_Value,data={}):
             root.FrsButton = tk.Button(root, image=uparrow, command=lambda:scene(Boorage_boost,12))
             root.FrsButton.place(relx=.15, rely=0.45,anchor="n")
             if root.CanFloor9 == True:
-                root.thirdButton = tk.Button(root, image=rightarrow, command=lambda:scene(floor9,13))
+                root.thirdButton = tk.Button(root, image=rightarrow, command=lambda:scene(root.floor9,13))
                 root.thirdButton.place(relx=.95, rely=0.5,anchor="n")
         if SceneData == 11:
             root.secButton = tk.Button(root, image=downarrow, command=lambda:scene(food_court,10))
@@ -846,7 +865,7 @@ def game(Scene_Value,data={}):
             root.FrsButton = tk.Button(root, image=downarrow, command=lambda:scene(food_court,10))
             root.FrsButton.place(relx=.5, rely=0.65,anchor="n")
         if SceneData == 14:
-            root.secButton = tk.Button(root, image=downarrow, command=lambda:scene(floor9,13))
+            root.secButton = tk.Button(root, image=downarrow, command=lambda:scene(root.floor9,13))
             root.secButton.place(relx=.5, rely=0.65,anchor="n")
             root.fourthbutton = tk.Button(root, image=uparrow, command=lambda:scene(root.elevatorhall,15))
             root.fourthbutton.place(relx=.65, rely=0.2,anchor="n")
@@ -857,7 +876,7 @@ def game(Scene_Value,data={}):
                 root.fourthbutton = tk.Button(root, image=uparrow, command=lambda:scene(exitdoor,18))
                 root.fourthbutton.place(relx=.32, rely=0.49,anchor="n")
         if SceneData == 16:
-            root.secButton = tk.Button(root, image=downarrow, command=lambda:scene(floor9,13))
+            root.secButton = tk.Button(root, image=downarrow, command=lambda:scene(root.floor9,13))
             root.secButton.place(relx=.5, rely=0.65,anchor="n")
             root.thirdButton = tk.Button(root, image=rightarrow, command=lambda:scene(arcadestaff,17))
             root.thirdButton.place(relx=.95, rely=0.5,anchor="n")
@@ -920,10 +939,14 @@ def game(Scene_Value,data={}):
             root.Dailog = tk.Button(root, image=dialouginteraction, command=lambda: item("fish"))
             root.Dailog.place(relx=.55, rely=0.1,anchor="n")
         if SceneData == 13:
-            root.Dailog = tk.Button(root, image=dialouginteraction, command=lambda: item("Security"))
-            root.Dailog.place(relx=.41, rely=0.14,anchor="n")
-            root.item = tk.Button(root, image=dialouginteraction, command=lambda: item("Sad"))
-            root.item.place(relx=.50, rely=0.245,anchor="n")
+            if root.canel:
+                root.item = tk.Button(root, image=dialouginteraction, command=lambda: item("Happy"))
+                root.item.place(relx=.50, rely=0.245,anchor="n")
+            else:
+                root.Dailog = tk.Button(root, image=dialouginteraction, command=lambda: item("Security"))
+                root.Dailog.place(relx=.41, rely=0.14,anchor="n")
+                root.item = tk.Button(root, image=dialouginteraction, command=lambda: item("Sad"))
+                root.item.place(relx=.50, rely=0.245,anchor="n")
         if SceneData == 16:
             root.item = tk.Button(root, image=arcade_RPS, command=lambda: item("RPS"))
             root.item.place(relx=.43, rely=0.25,anchor="n")
@@ -961,7 +984,7 @@ def game(Scene_Value,data={}):
         10: food_court,
         11: fish_Station,
         12: Boorage_boost,
-        13: floor9,
+        13: root.floor9,
         14: infodesk,
         15: root.elevatorhall,
         16: arcade,
