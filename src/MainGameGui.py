@@ -766,7 +766,7 @@ def game(Scene_Value,data={}):
                     if won:
                         itemframe_Deletion("CandyTicket",root.CandyTicket)
                         root.Temporary_Items.append(["CandyPin",candypin])
-                    except:
+                    else:
                         itemframe_Deletion("CandyTicket",root.CandyTicket)
                         root.Temporary_Items.append(["CandyPin",candypin])
                     root.item = tk.Button(root, image=candy_arcade, command=lambda: item("candy_arcade"))
