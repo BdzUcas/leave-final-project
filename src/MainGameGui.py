@@ -634,9 +634,15 @@ def game(Scene_Value,data={}):
             root.Dialogue = tk.Label(root, text=f"Thank you!! I love it!", font=("Arial", 40), bg="tan")
             root.Dialogue.place(relx=.5, rely=0.4, anchor="n")
             itemframe_Deletion("bunny",root.bunny)
+            root.nextbutton = tk.Button(root, text="You're welcome, I guess", command=lambda: dialog(55,'Security',currentscene))
+            root.nextbutton.place(relx=.5, rely=0.65, anchor="n")
+
+        if Interaction_Num == 55:
+            root.Dialogue = tk.Label(root, text=f"That'll keep her busy.\nI can go supervise the elevator fixing now.", font=("Arial", 40), bg="tan")
+            root.Dialogue.place(relx=.5, rely=0.4, anchor="n")
             root.canel = True
             root.elevatorhall = ImageTk.PhotoImage(elevatorhallfixed)
-            root.nextbutton = tk.Button(root, text="You're welcome, I guess", command=lambda: dialog(0,persontalking,currentscene))
+            root.nextbutton = tk.Button(root, text="Oh good.", command=lambda: dialog(0,persontalking,currentscene))
             root.nextbutton.place(relx=.5, rely=0.65, anchor="n")
             
         if Interaction_Num == 0:
