@@ -895,9 +895,9 @@ def game(Scene_Value,data={}):
             root.Dailog.place(relx=.55, rely=0.1,anchor="n")
         if SceneData == 13:
             root.Dailog = tk.Button(root, image=dialouginteraction, command=lambda: item("Security"))
-            root.Dailog.place(relx=.55, rely=0.1,anchor="n")
+            root.Dailog.place(relx=.41, rely=0.14,anchor="n")
             root.item = tk.Button(root, image=dialouginteraction, command=lambda: item("Sad"))
-            root.item.place(relx=.43, rely=0.25,anchor="n")
+            root.item.place(relx=.50, rely=0.245,anchor="n")
         if SceneData == 16:
             root.item = tk.Button(root, image=arcade_RPS, command=lambda: item("RPS"))
             root.item.place(relx=.43, rely=0.25,anchor="n")
@@ -983,7 +983,7 @@ def launch_game(data):
         if arcade_death:
             data = game(16,data)
         else:
-            data = game(1,data)
+            data = game(16,data)
         if not data['arcade_death']:
             break
         arcade_death = True
