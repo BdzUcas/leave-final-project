@@ -5,7 +5,7 @@ from arcade import arcade as run_arcade
 from data import undictify, dictify
 
 #This is a list of all the attributes of root that should be saved. For example: 'dollars2bool'
-export_fields = ['currency','Temporary_Items','Item_Selected','testItemBool','boobypinbool','dollars2bool','stairsavailible','orderrecipt','orderdone','CanFloor9','canel','rps_won','breaker_won','match_won','passed_Sleceted_item']
+export_fields = ['currency','Temporary_Items','Item_Selected','testItemBool','boobypinbool','dollars2bool','stairsavailible','orderrecipt','orderdone','CanFloor9','canel','rps_won','breaker_won','match_won','passed_Sleceted_item','arcade_death']
 item_images = {'Brokenbooby':'Images/BrokenBobbyPin.png.png','Toycars':'Images/Box o cars.png.png','CandyTicket':'Images/Candy ticket.png.png','sbobbypinlabel':'Images/Bobbypin.png.png','Bobbypin':'Images/Bobbypin.png.png','candypin':'Kandy_Pin.png.png'}
 
 #Beginging scene is game(Elevatorhall,1)
@@ -641,7 +641,7 @@ def game(Scene_Value,data={}):
             Item_Name.configure(image=Selitemframe)
             #itemframe_Deletion("Test",root.Testitem)
         root.passed_Sleceted_item = item_Type
-
+    
     def Inventoryframes(Inventory):
         #root.empty = tk.Button(root,image=itemframe, command=lambda:item_selection("None",root.empty))
         #root.empty.place(relx=0.1, rely=0.85,anchor="n")
@@ -676,24 +676,23 @@ def game(Scene_Value,data={}):
             #Hey I Do Not know what we are really doing for the item logic so just replace this with the function for item storage
             root.Temporary_Items.append(["Bobbypin",bobbypin])
             Inventoryframes(root.Temporary_Items)
-        if ItemName == "RPS":
+        elif ItemName == "RPS" or ItemName == "Brick" or ItemName == "Match":
+            root.arcade_death = True
+            root.destroy()
             root.rps_won,root.breaker_won,root.match_won = run_arcade(root.rps_won,root.breaker_won,root.match_won)
-        if ItemName == "Brick":
-            root.rps_won,root.breaker_won,root.match_won = run_arcade(root.rps_won,root.breaker_won,root.match_won)
-        if ItemName == "Match":
-            root.rps_won,root.breaker_won,root.match_won = run_arcade(root.rps_won,root.breaker_won,root.match_won)
-        if ItemName == "2dollars":
+            
+        elif ItemName == "2dollars":
             root.dollars2bool = True
             root.item.place_forget()
             #Hey I Do Not know what we are really doing for the item logic so just replace this with the function for item storage
             root.currency += 2
             root.currecytag.configure(text=f"Current cash:{root.currency}")
             Inventoryframes(root.Temporary_Items)
-        if ItemName == "candystoredialogue":
+        elif ItemName == "candystoredialogue":
             dialog(1,"CandyStore Owner",[candystore,5])
-        if ItemName == "toystoredialogue":
+        elif ItemName == "toystoredialogue":
             dialog(14,"toy store worker",[toystore,7])
-        if ItemName == "candy_arcade":
+        elif ItemName == "candy_arcade":
             for x in root.Temporary_Items:
                 if x[0] == "CandyTicket":
                     root.item.place_forget()
@@ -709,19 +708,19 @@ def game(Scene_Value,data={}):
                     root.item = tk.Button(root, image=candy_arcade, command=lambda: item("candy_arcade"))
                     root.item.place(relx=.75, rely=0.2,anchor="n")
                     Inventoryframes(root.Temporary_Items)
-        if ItemName == "Kid1Dialogue":
+        elif ItemName == "Kid1Dialogue":
             dialog(7,"Kid 1",[kidsection,4])
-        if ItemName == "Kid2Dialogue":
+        elif ItemName == "Kid2Dialogue":
             dialog(20,"Kid 2",[kidsection,4])
-        if ItemName == "Shydudetalk":
+        elif ItemName == "Shydudetalk":
             dialog(31,"Shy guy",[food_court,10])
-        if ItemName == "fish":
+        elif ItemName == "fish":
             dialog(37,"Fish store worker",[fish_Station,11])
-        if ItemName == "Security":
+        elif ItemName == "Security":
             dialog(42,"Security",[floor9,13])
-        if ItemName == "Sad":
+        elif ItemName == "Sad":
             dialog(47,"Sad girl",[floor9,13])
-        if ItemName == "Aguy":
+        elif ItemName == "Aguy":
             dialog(51,"Arcade worker",[testscene,17])
 
 
@@ -944,6 +943,8 @@ def game(Scene_Value,data={}):
         scene(stairs,Scene_Value)
     elif Scene_Value == 12:
         scene(arcadescene,Scene_Value)
+    elif Scene_Value == 16:
+        scene(arcadescene,Scene_Value)
     root.mainloop()
 
     #this bit returns a dictionary with the fields listed in export_fields
@@ -972,8 +973,19 @@ def root_setup():
     root.rps_won = False
     root.breaker_won = False
     root.match_won = False
+    root.arcade_death = False
     return root
 
 def launch_game(data):
-    return game(1,data)
+    arcade_death = False
+    while True:
+        data['arcade_death'] = False
+        if arcade_death:
+            data = game(16,data)
+        else:
+            data = game(1,data)
+        if not data['arcade_death']:
+            break
+        arcade_death = True
+    return data
 #data = game(1,root_setup())
