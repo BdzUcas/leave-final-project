@@ -2,13 +2,21 @@ import tkinter as tk
 from PIL import Image, ImageTk
 from treat_trios import treat_trios
 from arcade import arcade as run_arcade
+from data import undictify, dictify
+
+#This is a list of all the attributes of root that should be saved. For example: 'dollars2bool'
+export_fields = ['currency','Temporary_Items','Item_Selected','testItemBool','boobypinbool','dollars2bool','stairsavailible','orderrecipt','orderdone','CanFloor9','canel','rps_won','breaker_won','match_won','passed_Sleceted_item']
+item_images = {'Brokenbooby':'Images/BrokenBobbyPin.png.png','Toycars':'Images/Box o cars.png.png','CandyTicket':'Images/Candy ticket.png.png','sbobbypinlabel':'Images/Bobbypin.png.png','Bobbypin':'Images/Bobbypin.png.png','candypin':'Kandy_Pin.png.png'}
 
 #Beginging scene is game(Elevatorhall,1)
-def game(Scene_Value):
-    root = tk.Tk()
+def game(Scene_Value,data={}):
+
+    
+    if not data:
+        root = root_setup()
+    else:
+        root = undictify([data])[0]
     root.title("Game")
-
-
     root.configure(background="light blue")
     w = root.winfo_screenwidth()
     h = root.winfo_screenheight()
@@ -143,28 +151,15 @@ def game(Scene_Value):
     root.backgroundlabel = tk.Label(root,)
     root.backgroundlabel.place(relx=.5, rely=0.0, anchor="n")
 
-    root.currency = 5
+    
     root.currecytag = tk.Label(root, text=f"Current cash:{root.currency}", font=("Arial", 20), bg="tan")
     root.currecytag.place(relx=.15, rely=0.73, anchor="n")
 
     #button.pack(pady=40)
     root.passed_Sleceted_item = "Empty"
-    root.Temporary_Items = []
+    
 
-
-    #Diffrent items
-    root.Item_Selected = "None"
-    root.testItemBool = 0
-    root.boobypinbool = False
-    root.dollars2bool = False
-    root.stairsavailible = False
-    root.orderrecipt = False
-    root.orderdone = False
-    root.CanFloor9 = False
-    root.canel = False
-    root.rps_won = False
-    root.breaker_won = False
-    root.match_won = False
+    
 
     #The main part
     #itemframe_btn = tk.Button(root, image=itemframe)
@@ -765,6 +760,7 @@ def game(Scene_Value):
             if root.boobypinbool == False:
                 root.item = tk.Button(root, image=bobbypin, command=lambda: item("Bobbypin"))
                 root.item.place(relx=.5, rely=0.1,anchor="n")
+            pass
         if SceneData == 3:
             if root.dollars2bool == False:
                 root.item = tk.Button(root, image=dolla2, command=lambda: item("2dollars"))
@@ -804,6 +800,10 @@ def game(Scene_Value):
         SceneButtons(SceneData)
         SceneItems(SceneData)
 
+    for i in root.Temporary_Items:
+        if len(i) == 1:
+            i.append(ImageTk.PhotoImage(Image.open(item_images[i[0]])))
+    Inventoryframes(root.Temporary_Items)
     
     #Test scene Data
     if Scene_Value == 1:
@@ -828,6 +828,34 @@ def game(Scene_Value):
         scene(arcadescene,Scene_Value)
     root.mainloop()
 
+    #this bit returns a dictionary with the fields listed in export_fields
+    root_dictionary = root.__dict__
+    export_data = {}
+    for key in export_fields:
+        export_data[key] = root_dictionary[key]
+    export_data['classtype'] = 'Tk'
+    export_data['Temporary_Items'] = [[i[0]] for i in export_data['Temporary_Items']]
+    return export_data
 
+#you must get new roots from this function and not from Tk()
+def root_setup():
+    root = tk.Tk()
+    root.currency = 5
+    root.Temporary_Items = []
+    root.Item_Selected = "None"
+    root.testItemBool = 0
+    root.boobypinbool = False
+    root.dollars2bool = False
+    root.stairsavailible = False
+    root.orderrecipt = False
+    root.orderdone = False
+    root.CanFloor9 = False
+    root.canel = False
+    root.rps_won = False
+    root.breaker_won = False
+    root.match_won = False
+    return root
 
-game(1)
+def launch_game(data):
+    return game(1,data)
+#data = game(1,root_setup())

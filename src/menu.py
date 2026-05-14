@@ -12,18 +12,14 @@ def choose_save_file(user_data):
     if save_file == 'Create new save file':
         save_file = gui_input('Name your save file:')
         user_data['save_files'][save_file] = {}
-    return user_data['save_files'][save_file]
+    return save_file,user_data['save_files'][save_file]
 def run_game(username,user_data):
     
-    data = choose_save_file(user_data)
+    save_file,data = choose_save_file(user_data)
     print(data)
-    if not data:
-    #MAIN GAME FUNCTION GOES HERE
-        game(1)
-    else:
-        game(data)
+    data = launch_game(data)
+    user_data['save_files'][save_file] = data
     json_dump(f'docs/{username}.json',user_data)
-    #launch_game()
 def main():
     def get_users():
         users = csv_to_dictionary('docs/users.csv')
@@ -47,7 +43,7 @@ def main():
             case 'Login':
                 username = gui_input('Enter your username:')
                 if verify_account(username):
-                    user_data = json_pull(f'docs/{username}.json')
+                    user_data = json_pull(f'docs/{username}.json',False)
                     if not user_data:
                         gui([f'There was an error getting the data from this account!','Please make a new one.','[Back to Menu'])
                         continue
