@@ -224,16 +224,7 @@ def game(Scene_Value,data={}):
             root.item.place_forget()
         except:
             pass
-    def goto_candystore_from_stairs():
-        root.entered_candy_from_stairs = True
-        scene(candystore,5)
-
-    def exit_candy_store():
-        if root.entered_candy_from_stairs:
-            root.entered_candy_from_stairs = False
-            scene(food_court,10)
-        else:
-            scene(main10,2)
+    
 
     def dialog(Interaction_Num,persontalking,currentscene):
         scene(dialoguebox,0)
@@ -512,8 +503,6 @@ def game(Scene_Value,data={}):
             else:
                 root.Dialogue = tk.Label(root, text="Oh…thanks.\nHere's the $10 as promised.", font=("Arial", 40), bg="tan")
                 root.Dialogue.place(relx=.5, rely=0.5, anchor="n")
-                root.currency += 10
-                root.elevator_unlocked = True
                 root.nextbutton = tk.Button(root, text="You said you would show me the way to the elevators too.", command=lambda: dialog(40,persontalking,currentscene))
                 root.nextbutton.place(relx=.5, rely=0.75, anchor="n")
         if Interaction_Num == 32:
@@ -571,7 +560,7 @@ def game(Scene_Value,data={}):
             root.button1.place(relx=.5, rely=0.65, anchor="n")
         if Interaction_Num == 41:
             root.currency += 10
-            itemframe_Deletion("fish_order",root.fish)
+            itemframe_Deletion("Fish_order",root.fish)
             root.CanFloor9 = True
             dialog(0,persontalking,currentscene)
         if Interaction_Num == 42:
@@ -808,8 +797,9 @@ def game(Scene_Value,data={}):
         if SceneData == 1:
             root.FrsButton = tk.Button(root, image=uparrow, command=lambda:scene(main10,2))
             root.FrsButton.place(relx=.61, rely=0.5,anchor="n")
-            if root.elevator_unlocked:
-                pass
+            if root.canel == True:
+                root.fourthbutton = tk.Button(root, image=uparrow, command=lambda:scene(exitdoor,18))
+                root.fourthbutton.place(relx=.32, rely=0.49,anchor="n")
         if SceneData == 2:
             root.FrsButton = tk.Button(root, image=downarrow, command=lambda:scene(root.elevatorhall,1))
             root.FrsButton.place(relx=.5, rely=0.65,anchor="n")
@@ -838,7 +828,7 @@ def game(Scene_Value,data={}):
 
 
         if SceneData == 5:
-            root.FrsButton = tk.Button(root, image=downarrow, command=exit_candy_store)
+            root.FrsButton = tk.Button(root, image=downarrow, command=lambda:scene(main10,2))
             root.FrsButton.place(relx=.5, rely=0.65,anchor="n")
             if root.stairsavailible == True:
                 root.secButton = tk.Button(root, image=uparrow, command=lambda:scene(stairs10,8))
@@ -849,13 +839,16 @@ def game(Scene_Value,data={}):
         if SceneData == 7:
             root.fourthbutton = tk.Button(root, image=uparrow, command=lambda:scene(kidsection,4))
             root.fourthbutton.place(relx=.8, rely=0.45,anchor="n")
+        
         if SceneData == 8:
             root.FrsButton = tk.Button(root, image=downarrow, command=lambda:scene(candystore,5))
             root.FrsButton.place(relx=.5, rely=0.65,anchor="n")
             root.secButton = tk.Button(root, image=downarrow, command=lambda:scene(stairs9,9))
             root.secButton.place(relx=.7, rely=0.4,anchor="n")
         if SceneData == 9:
-            root.secButton = tk.Button(root, image=downarrow, command=goto_candystore_from_stairs)
+            root.FrsButton = tk.Button(root, image=uparrow, command=lambda:scene(stairs10,8))
+            root.FrsButton.place(relx=.5, rely=0.3,anchor="n")
+            root.secButton = tk.Button(root, image=downarrow, command=lambda:scene(food_court,10))
             root.secButton.place(relx=.5, rely=0.65,anchor="n")
         if SceneData == 10:
             root.fourthbutton = tk.Button(root, image=uparrow, command=lambda:scene(fish_Station,11))
